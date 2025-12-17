@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="SanitySuite" parallel="false">
+<listeners>
+    <listener class-name="org.isha.automation.basetest.Listener"/>
+</listeners>
+
+
+    <test thread-count="5" name="Sanity flow Tests">
+
+        <classes>
+           
+            <class name="org.isha.automation.test.CACAOnetime.CACAOnetimepassportcancleTest"/>
+            <class name="org.isha.automation.test.IVOnetime.IVOnetimepassportcancleTest"/>
+            <class name="org.isha.automation.test.Annadanampaidgeneral.AnnadanampaidgeneralpassportcancelTest"/>
+            <class name="org.isha.automation.test.Annadanampaidbirthday.AnnadanampaidbirthdaypassportcancleTest"/>
+			<class name="org.isha.automation.test.Annadanamorganicgeneral.AnnadanamorganicgeneralpssportcancelTest"/>
+			<class name="org.isha.automation.test.Annadanamorganicmarriage.AnnadanamorganicmarriagepassportcancelTest"/>
+			<class name="org.isha.automation.test.SMOnetime.SMpassportcancelTest"/>
+			<class name="org.isha.automation.test.Annadanamorganiccorpusgeneral.AnnadanamorganiccorpusgeneralonetimepassportTest"/>
+            
+        </classes>
+    </test>
+
+</suite>
