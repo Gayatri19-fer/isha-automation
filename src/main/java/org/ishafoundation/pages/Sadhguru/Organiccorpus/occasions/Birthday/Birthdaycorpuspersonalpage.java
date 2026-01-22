@@ -48,11 +48,17 @@ public class Birthdaycorpuspersonalpage {
     public void EnterPincode() {
     	page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Enter Pin / Zip Code")).fill("415109");
     }
-    
-    public void Enteroccasion() {
+    public void Enterhonouredhonord() {
     	page.locator("#honouredPersons").fill("honouredPersons");
     }
-    
+
+    public void Selectanothercountry() {
+        page.locator("#selected_country").selectOption("US");
+        page.locator("#selected_state").selectOption("Alaska");
+    	page.locator("#passport_image")
+        .setInputFiles(Paths.get("C:\\Users\\Gayatri\\Downloads\\pass (1).jpg"));
+    }
+
     public void Enterdateodoccasion() {
     	// To select future date 
     	LocalDate targetDate = LocalDate.now().plusDays(5); // choose any future day

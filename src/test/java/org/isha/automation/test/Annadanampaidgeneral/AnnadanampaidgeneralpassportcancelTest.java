@@ -43,7 +43,8 @@ public class AnnadanampaidgeneralpassportcancelTest extends BaseTest {
 		generalpaymentPage GPM = new generalpaymentPage(page);
 		//GPM.passprotflowcancleplaywright();
 		//	GPM.Cancletansaction();    // for cancel click and failed
-		GPM.paymentselect();		// for select payment option and cancel payment 
+		//GPM.paymentselect();		// for select payment option and cancel payment 
+		GPM.passprotflowcancleplaywright();
 		generalcancelPage GC = new generalcancelPage(page);
 	//	Assert.assertTrue(GC.isfailedPageOpen()); 	// for cancel click and failed
 		Assert.assertTrue(GC.iscanclePageOpen());	// for select payment option and verify cancel page

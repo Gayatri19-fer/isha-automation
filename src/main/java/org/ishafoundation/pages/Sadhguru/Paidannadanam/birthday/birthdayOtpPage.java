@@ -10,7 +10,7 @@ public class birthdayOtpPage {
 		this.page =page;
 	}
 	
-	private String getotp = "#get-otp-btn";
+	 private String getotp = "#get-otp-btn";
 	
 
     public void getotp() {

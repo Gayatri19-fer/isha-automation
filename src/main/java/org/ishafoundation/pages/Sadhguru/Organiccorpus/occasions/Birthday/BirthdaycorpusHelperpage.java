@@ -23,7 +23,7 @@ public class BirthdaycorpusHelperpage {
 	BL.entercity();
 	BL.EnterAddress();
 	BL.EnterPincode();
-	BL.Enteroccasion();
+	BL.Enterhonouredhonord();
 	BL.Enterdateodoccasion();
 	BL.EnterPan();
 	BL.Submit();

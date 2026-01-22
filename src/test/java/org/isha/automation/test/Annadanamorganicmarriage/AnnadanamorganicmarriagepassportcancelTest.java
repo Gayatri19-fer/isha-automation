@@ -62,9 +62,9 @@ public class AnnadanamorganicmarriagepassportcancelTest extends BaseTest{
 		String email = "anuradha@yopmail.com";  // your Outlook email
 		LO.fetchAndEnterOtpFromYopmail(email);
 		marriageOrganicPaymentPage MP = new marriageOrganicPaymentPage(donatePage);
-	//	MP.passprotflowcancleplaywright();
+		MP.passprotflowcancleplaywright();
 	//	MP.Cancleclick();		// for cancel click and failed
-		MP.paymentselect();		// for select payment option and cancel payment 
+	//	MP.paymentselect();		// for select payment option and cancel payment 
 		marriageOrganicCancelPage MC = new marriageOrganicCancelPage(donatePage);
 		Assert.assertTrue(MC.iscanclePageOpen());  // for select payment option and verify cancel page
 		// Assert.assertTrue(IVC.isfailedPageOpen()); // for cancel click and failed

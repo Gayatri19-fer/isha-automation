@@ -18,7 +18,8 @@
 			<class name="org.isha.automation.test.Annadanamorganicmarriage.AnnadanamorganicmarriagepassportcancelTest"/>
 			<class name="org.isha.automation.test.SMOnetime.SMpassportcancelTest"/>
 			<class name="org.isha.automation.test.Annadanamorganiccorpusgeneral.AnnadanamorganiccorpusgeneralonetimepassportTest"/>
-            
+            <class name="org.isha.automation.test.Annadanamorganiccorpusbirthday.AnnadanamorganiccorpusbirthdayontimepassportTest"/>
+       
         </classes>
     </test>
 

@@ -9,8 +9,8 @@ import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganiccancelPag
 import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganichelper;
 import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganicpaymentPage;
 import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganicpersonaldetailsPage;
+import org.ishafoundation.pages.Sadhguru.Organic.general.generalorganiccorpusotppage;
 import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.LoginRecurringpage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.generalcorpusotppage;
 import org.testng.annotations.Test;
 
 import com.microsoft.playwright.Locator;
@@ -56,7 +56,7 @@ public class AnnadanamorganicgeneralpssportcancelTest extends BaseTest {
 		OP.Enterpersonhonoured();
 		OP.EnterPan();
 		OP.Submit();
-		generalcorpusotppage go = new generalcorpusotppage(page);
+		generalorganiccorpusotppage go = new generalorganiccorpusotppage(page);
 		go.getotp();
 		LoginRecurringpage lo = new LoginRecurringpage(page);
 		String email = "anuradha@yopmail.com";  // your Outlook email
@@ -66,12 +66,12 @@ public class AnnadanamorganicgeneralpssportcancelTest extends BaseTest {
 		OPP.cancleplaywright();
 	//	OPP.clickoncancel();		// for cancel click and failed
 	//	OPP.Cancletansaction2();		// for cancel click and failed
-		OPP.paymentselect();			// for select payment option and cancel payment 
+		//OPP.paymentselect();			// for select payment option and cancel payment 
 		generalOrganiccancelPage OC = new generalOrganiccancelPage(page);
 		Assert.assertTrue(OC.iscanclePageOpen()); // for select payment option and verify cancel page
 		//Assert.assertTrue(OC.isfailedPageOpen()); // for cancel click and failed
 		OC.canclemsg();
-		OC.getPageUrl();
+		System.out.println(OC.getPageUrl());
 		
 		
 	}

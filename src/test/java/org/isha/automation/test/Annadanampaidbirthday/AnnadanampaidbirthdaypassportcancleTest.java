@@ -42,7 +42,8 @@ public class AnnadanampaidbirthdaypassportcancleTest extends BaseTest{
 		birthdaypaymentPage BP = new birthdaypaymentPage(page);
 		//BP.passprotflowcancleplaywright();
 		//BP.Cancleclick();		// for cancel click and failed
-		BP.paymentselect();		// for select payment option and cancel payment 
+		//BP.paymentselect();		// for select payment option and cancel payment 
+		BP.passprotflowcancleplaywright();
 		birthdaycancelPage BC = new birthdaycancelPage(page);
 		Assert.assertTrue(BC.iscanclePageOpen());	// for select payment option and verify cancel page
 		//Assert.assertTrue(BC.isfailedPageOpen());	// for cancel click and failed
