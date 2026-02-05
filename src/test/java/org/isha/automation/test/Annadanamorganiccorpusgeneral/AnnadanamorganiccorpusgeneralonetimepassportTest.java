@@ -2,31 +2,42 @@ package org.isha.automation.test.Annadanamorganiccorpusgeneral;
 
 import org.isha.automation.basetest.BaseTest;
 import org.isha.automation.basetest.Retry;
+
 import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganiccancelPage;
 import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganichelper;
 import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganicpaymentPage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.LoginRecurringpage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.generalcorpusdonatepage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.generalcorpushelperpage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.generalcorpusotppage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.generalcorpuspaymentpage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.generalcorpuspersonalpage;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.LandingPage;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Fetchotp;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Corpusdonatepage;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Corpushelperpage;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Corpusotppage;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Corpuspaymentpage;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Corpuspersonalpage;
 import org.ishafoundation.pages.iso.IV.Recurring.YopmailutilityPage;
 import org.testng.annotations.Test;
 
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.LoadState;
 
 import junit.framework.Assert;
 
 public class AnnadanamorganiccorpusgeneralonetimepassportTest extends BaseTest {
 	@Test(groups= {"sanity"}, retryAnalyzer = Retry.class)
-	public void annadanamorganicgeneralflow() {
-		page.navigate("https://isha.sadhguru.org/en/contribute/annadanam/donate");
-		generalcorpusdonatepage gc =  new generalcorpusdonatepage(page);
+	public void annadanamorganiccorpusgeneralflow() {
+		page.navigate("https://isha.sadhguru.org/en/contribute/annadanam");
+		LandingPage LP = new LandingPage(page);
+		Page donatePage = page.context().waitForPage(
+		()->
+		{
+			LP.generalflow();
+		}
+		);
+		donatePage.waitForLoadState(LoadState.NETWORKIDLE);
+		Corpusdonatepage gc =  new Corpusdonatepage(donatePage);
 		gc.selectonetime();
-		gc.selectamount();
+		gc.Enteramount();
 		gc.clickcontinue();
-		generalcorpuspersonalpage gp = new generalcorpuspersonalpage(page);
+		Corpuspersonalpage gp = new Corpuspersonalpage(donatePage);
 		gp.EnterFirstname();
 		gp.EnterLasttname();
 		gp.EnterEmail();
@@ -42,20 +53,22 @@ public class AnnadanamorganiccorpusgeneralonetimepassportTest extends BaseTest {
 		gp.Enterpersonhonoured();
 		gp.EnterPan();
 		gp.Submit();
-		generalcorpusotppage go = new generalcorpusotppage(page);
+		Corpusotppage go = new Corpusotppage(donatePage);
 		go.getotp();
-		LoginRecurringpage lo = new LoginRecurringpage(page);
+		Fetchotp lo = new Fetchotp(donatePage);
 		String email = "anuradha@yopmail.com";  // your Outlook email
 
-		lo.fetchAndEnterOtpFromYopmail(email);
+		String otp =lo.fetchAndEnterOtpFromYopmail(email);
+		go.enterotp(otp);
+		go.verify();
 
 		
-		generalcorpuspaymentpage OPP = new generalcorpuspaymentpage(page);
+		Corpuspaymentpage OPP = new Corpuspaymentpage(donatePage);
 	//	OPP.clickoncancel();		// for cancel click and failed
 	//	OPP.Cancletansaction2();		// for cancel click and failed
 	//	OPP.paymentselect();			// for select payment option and cancel payment 
 		OPP.passprotflowcancleplaywright();
-		generalOrganiccancelPage OC = new generalOrganiccancelPage(page);
+		generalOrganiccancelPage OC = new generalOrganiccancelPage(donatePage);
 		Assert.assertTrue(OC.iscanclePageOpen()); // for select payment option and verify cancel page
 		//Assert.assertTrue(OC.isfailedPageOpen()); // for cancel click and failed
 		OC.canclemsg();

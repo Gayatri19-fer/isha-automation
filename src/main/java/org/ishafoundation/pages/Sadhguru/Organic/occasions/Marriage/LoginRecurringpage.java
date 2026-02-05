@@ -58,7 +58,7 @@ public class LoginRecurringpage {
 
         // Wait and fetch OTP
         int maxWait = 120; // 2 minutes
-        int pollInterval = 5; // seconds
+        int pollInterval = 6; // seconds
         String otp = yop.waitForOtp(maxWait, pollInterval);
         System.out.println("Fetched OTP: " + otp);
 

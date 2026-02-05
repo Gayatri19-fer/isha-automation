@@ -32,12 +32,11 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-<dependency>
+	<dependency>
     <groupId>org.testng</groupId>
     <artifactId>testng</artifactId>
     <version>7.10.2</version> <!-- latest stable -->
-   
-</dependency>
+	</dependency>
 
 <dependency>
     <groupId>com.aventstack</groupId>
@@ -105,7 +104,24 @@
       </plugins>
     </build>
   </profile>
-  
+  <profile>
+    <id>passportflowSanity</id>
+    <build>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.5.4</version>
+          <configuration>
+            <suiteXmlFiles>
+              <suiteXmlFile>TestSuites/passportflowSanity.xml</suiteXmlFile>
+            </suiteXmlFiles>
+            <testFailureIgnore>false</testFailureIgnore>
+          </configuration>
+        </plugin>
+      </plugins>
+    </build>
+  </profile>
   
 </profiles>
 

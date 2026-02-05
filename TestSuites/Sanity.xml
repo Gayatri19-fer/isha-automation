@@ -21,6 +21,7 @@
 			<class name="org.isha.automation.test.SMOnetime.SMcancelTest"/>
 			<class name="org.isha.automation.test.Annadanamorganiccorpusgeneral.AnnadanamorganiccorpusgeneralonetimeTest"/>
             <class name="org.isha.automation.test.Annadanamorganiccorpusbirthday.AnnadanamorganiccorpusbirthdayontimeTest"/>
+			<class name="org.isha.automation.test.msronetime.MsrpaidTest"/>
         </classes>
     </test>
 

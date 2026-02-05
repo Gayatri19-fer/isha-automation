@@ -36,15 +36,17 @@ public class MsrPersonalDetailsPage {
 	    	page.fill(PINCode, "415105");
 	    }
 	    public void Selectcheckbox() {
-	    	page.fill(Address, "fc road pune");
+	    	page.check(Checkbox);
 	    }
 	    public void EnterAddress() {
-	    	page.check(Checkbox);
+	    	page.fill(Address, "fc road pune");
 	    }
 	    public void paysecuarly() {
 	        page.click(paysecurly);
 	    }
-	    
+	    public void enterpan() {
+	    	page.fill(Pancard, "GTYHT5645R");
+	    }
 		public boolean isPanoptiondispayed() {
 		    
 		    try {
@@ -56,9 +58,28 @@ public class MsrPersonalDetailsPage {
 		    }
 		 }
 
+		public boolean Addressvalidationbelow20k(String addr) {
 
-	    
-	    
+		    page.locator(Address).fill(addr);
+		    page.click(paysecurly);
 
+		    boolean visible = page.locator("#address1_error_msg").isVisible();
+
+		    page.locator(Address).clear(); // important
+
+		    return visible;
+		}
+		
+		public boolean Addressvalidationeqaulabove20k(String addr) {
+
+		    page.locator(Address).fill(addr);
+		    page.click(paysecurly);
+
+		    boolean visible = page.locator("#address1_error_msg").isVisible();
+
+		    page.locator(Address).clear(); // important
+
+		    return visible;
+		}
 
 }

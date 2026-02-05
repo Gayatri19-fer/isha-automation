@@ -28,7 +28,6 @@ public class Yopmailuitlitypage {
 	    // Poll inbox until OTP is found
 	    public String waitForOtp(int maxWaitSeconds, int pollIntervalSeconds) {
 	        Instant end = Instant.now().plus(Duration.ofSeconds(maxWaitSeconds));
-
 	        while (Instant.now().isBefore(end)) {
 	            page.reload(new Page.ReloadOptions().setWaitUntil(WaitUntilState.DOMCONTENTLOADED));
 

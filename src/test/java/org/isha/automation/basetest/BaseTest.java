@@ -20,6 +20,7 @@ import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
+import com.microsoft.playwright.Tracing;
 
 import Resources.BaseExtentReport;
 import Resources.ExtentReportManager;
@@ -49,17 +50,26 @@ public class BaseTest {
 	               .setViewportSize(1366,607));
 	        //change be below line 32 commented aboveline- now comen line33
 	       // BrowserContext context = browser.newContext();
+	       context.tracing().start(new Tracing.StartOptions()
+	                .setScreenshots(true)
+	                .setSnapshots(true)
+	                .setSources(true));
 	        page = context.newPage();
 	        threadPage.set(page);
 	        testContext.setAttribute("page", page);
 	    }
 	   @AfterMethod (alwaysRun = true)
 	   public void tearDown(ITestResult result) {
-		   if (result.getStatus() == ITestResult.SUCCESS) {
+
+		   if (result.getStatus() == ITestResult.FAILURE) {
+			   context.tracing().stop(new Tracing.StopOptions()
+		                .setPath(Paths.get("traces/" + result.getName() + ".zip")));
+		   }else {
+			   context.tracing().stop();
+		   }
 	       context.close();
 	        browser.close();
 	       playwright.close();
-		   }
 	   }
 	    public String takeScreenshot(Page page,String testName) {
 

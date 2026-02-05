@@ -10,7 +10,7 @@ import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganichelper;
 import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganicpaymentPage;
 import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganicpersonaldetailsPage;
 import org.ishafoundation.pages.Sadhguru.Organic.general.generalorganiccorpusotppage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.LoginRecurringpage;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Fetchotp;
 import org.testng.annotations.Test;
 
 import com.microsoft.playwright.Locator;
@@ -21,7 +21,7 @@ import junit.framework.Assert;
 
 public class AnnadanamorganicgeneralpssportcancelTest extends BaseTest {
 	@Test(groups= {"sanity"}, retryAnalyzer = Retry.class)
-	public void annadanamorganicgeneralflow() {
+	public void annadanamorganicgeneralpassflow() {
 		page.navigate("https://isha.sadhguru.org/en/contribute/iyc-annadanam/donate");
 	/*	generalOrganicLandingPage OL = new generalOrganicLandingPage(page);
 		Page donatePage = page.waitForPopup(() -> {
@@ -58,10 +58,12 @@ public class AnnadanamorganicgeneralpssportcancelTest extends BaseTest {
 		OP.Submit();
 		generalorganiccorpusotppage go = new generalorganiccorpusotppage(page);
 		go.getotp();
-		LoginRecurringpage lo = new LoginRecurringpage(page);
+		Fetchotp lo = new Fetchotp(page);
 		String email = "anuradha@yopmail.com";  // your Outlook email
 
-		lo.fetchAndEnterOtpFromYopmail(email);
+		String otp = lo.fetchAndEnterOtpFromYopmail(email);
+		go.enterotp(otp);
+		go.verify();
 		generalOrganicpaymentPage OPP = new generalOrganicpaymentPage(page);
 		OPP.cancleplaywright();
 	//	OPP.clickoncancel();		// for cancel click and failed

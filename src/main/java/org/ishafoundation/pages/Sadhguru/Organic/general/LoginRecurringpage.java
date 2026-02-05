@@ -10,14 +10,10 @@ import com.microsoft.playwright.Playwright;
 public class LoginRecurringpage {
 	
 	private Page page;
-	
-	
 	public LoginRecurringpage(Page page) {
 		this.page =page;
 		// added below line 15 and pass this Browser browser
-		
 	}
-	
 	private String enterfetchotp = "#verify-otp";
 	private String verify = "input[value='Verify']";
 	private String pay = "#payment";
@@ -34,18 +30,7 @@ public class LoginRecurringpage {
         return yop.waitForOtp(maxWaitSec, pollInterval);
     }
 	
-    public void enterOTP(String otp) {
-        page.fill(enterfetchotp, otp);
-    }
-
-    public void submitOTP() {
-        page.locator(verify).click(); // or another button if OTP submit is different
-    }
-    public void paysecurly() {
-        page.locator(pay).click();
-    }
-    
-    public void fetchAndEnterOtpFromYopmail(String email) {
+    public String fetchAndEnterOtpFromYopmail(String email) {
     	try (Playwright playwright2 = Playwright.create()) {
             Browser tempBrowser = playwright2.chromium().launch(new BrowserType.LaunchOptions()
             		.setHeadless(false));
@@ -58,7 +43,7 @@ public class LoginRecurringpage {
 
         // Wait and fetch OTP
         int maxWait = 120; // 2 minutes
-        int pollInterval = 5; // seconds
+        int pollInterval = 6; // seconds
         String otp = yop.waitForOtp(maxWait, pollInterval);
         System.out.println("Fetched OTP: " + otp);
 
@@ -68,15 +53,8 @@ public class LoginRecurringpage {
 
         // Switch focus back to login page
         page.bringToFront();
-
-        // Enter and submit OTP
-        page.fill(enterfetchotp, otp);
-        page.locator(verify).click();
-        page.locator(pay).click();
+        return otp;
     	}
     }
-	
-	
-	
 
 }

@@ -1,5 +1,6 @@
 package org.ishafoundation.pages.Sadhguru.Organic.general;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
 public class generalorganiccorpusotppage {
@@ -15,6 +16,15 @@ public class generalorganiccorpusotppage {
     public void getotp() {
         page.locator(getotp).click(); // or another button if OTP submit is different
     }
+	public void enterotp(String otp) {
+		Locator otpBox = page.getByPlaceholder("Enter OTP Here");
+		otpBox.waitFor();
+		otpBox.fill(otp);
+	}
+	public void verify() {
+		page.locator("[name='verify-otp-btn']").click();
+		page.locator("//button[@id='payment']").click();
+	}
 
 }
 

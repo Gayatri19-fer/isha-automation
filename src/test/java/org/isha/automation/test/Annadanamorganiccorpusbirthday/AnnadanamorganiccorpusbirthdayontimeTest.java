@@ -2,13 +2,14 @@ package org.isha.automation.test.Annadanamorganiccorpusbirthday;
 
 import org.isha.automation.basetest.BaseTest;
 import org.isha.automation.basetest.Retry;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.occasions.Birthday.BirthdaycorpusHelperpage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.occasions.Birthday.BirthdaycorpusLandingpage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.occasions.Birthday.BirthdaycorpusOtppage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.occasions.Birthday.BirthdaycorpuscancelPage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.occasions.Birthday.Birthdaycorpusdonationpage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.occasions.Birthday.Birthdaycorpuspaymentpage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.occasions.Birthday.Loginpage;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.CorpusCancelpgae;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Corpusdonatepage;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Corpusotppage;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Corpuspaymentpage;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Corpuspersonalpage;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Fetchotp;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.LandingPage;
+
 import org.testng.annotations.Test;
 
 import com.microsoft.playwright.Page;
@@ -17,25 +18,43 @@ import junit.framework.Assert;
 
 public class AnnadanamorganiccorpusbirthdayontimeTest extends BaseTest{
 	@Test(groups= {"sanity"}, retryAnalyzer = Retry.class)
-	public void annadanamorganicgeneralflow() {
+	public void annadanamorganiccorpusgeneralflow() {
 		page.navigate("https://isha.sadhguru.org/en/contribute/annadanam");
-		BirthdaycorpusLandingpage BL = new BirthdaycorpusLandingpage(page);
+		LandingPage BL = new LandingPage(page);
 		Page donatepage = page.waitForPopup(() ->
-		{BL.selectoccasion();}
+		{
+			BL.birthdayflow();}
 		);
-		Birthdaycorpusdonationpage BD = new Birthdaycorpusdonationpage(donatepage);
-		BD.selectamount();
-		BirthdaycorpusHelperpage BH = new BirthdaycorpusHelperpage(donatepage);
-		BH.completeflow();
-		BirthdaycorpusOtppage BOT = new BirthdaycorpusOtppage(donatepage);
+		Corpusdonatepage BD = new Corpusdonatepage(donatepage);
+		BD.Enteramount();
+		BD.clickcontinue();
+		Corpuspersonalpage BH = new Corpuspersonalpage(donatepage);
+		BH.EnterFirstname();
+		BH.EnterLasttname();
+		BH.EnterPhonenumber();
+		BH.EnterEmail();
+		BH.Selectcitizenship();
+		BH.Select80GTax();
+		BH.Selectcountry();
+		BH.Selectstate();
+		BH.Entertcity();
+		BH.EnterAddress();
+		BH.EnterPincode();
+		BH.Enterpersonhonoured();
+		BH.Enterdateodoccasion();
+		BH.EnterPan();
+		BH.Submit();
+		Corpusotppage BOT = new Corpusotppage(donatepage);
 		BOT.getotp();
-		Loginpage lo = new Loginpage(donatepage);
+		Fetchotp lo = new Fetchotp(donatepage);
 		String email = "anuradha@yopmail.com";  // your Outlook email
 
-		lo.fetchAndEnterOtpFromYopmail(email);
-		Birthdaycorpuspaymentpage BP = new Birthdaycorpuspaymentpage(donatepage);
+		String otp = lo.fetchAndEnterOtpFromYopmail(email);
+		BOT.enterotp(otp);
+		BOT.verify();
+		Corpuspaymentpage BP = new Corpuspaymentpage(donatepage);
 		BP.paymentselect();
-		BirthdaycorpuscancelPage BC = new BirthdaycorpuscancelPage(donatepage);
+		CorpusCancelpgae BC = new CorpusCancelpgae(donatepage);
 		Assert.assertTrue(BC.iscanclePageOpen()); // for select payment option and verify cancel page
 		//Assert.assertTrue(OC.isfailedPageOpen()); // for cancel click and failed
 		BC.canclemsg();

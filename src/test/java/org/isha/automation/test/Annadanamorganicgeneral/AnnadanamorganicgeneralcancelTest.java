@@ -10,7 +10,7 @@ import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganiccancelPag
 import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganichelper;
 import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganicpaymentPage;
 import org.ishafoundation.pages.Sadhguru.Organic.general.generalorganiccorpusotppage;
-import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.LoginRecurringpage;
+import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Fetchotp;
 import org.testng.annotations.Test;
 
 import com.microsoft.playwright.Locator;
@@ -31,10 +31,11 @@ public class AnnadanamorganicgeneralcancelTest extends BaseTest {
 		OP.completeflow();
 		generalorganiccorpusotppage OTP = new generalorganiccorpusotppage(page);
 		OTP.getotp();
-		LoginRecurringpage lo = new LoginRecurringpage(page);
+		Fetchotp lo = new Fetchotp(page);
 		String email = "anuradha@yopmail.com";  // your Outlook email
-
-		lo.fetchAndEnterOtpFromYopmail(email);
+		String otp = lo.fetchAndEnterOtpFromYopmail(email);
+		OTP.enterotp(otp);
+		OTP.verify();
 		generalOrganicpaymentPage OPP = new generalOrganicpaymentPage(page);
 	//	OPP.clickoncancel();		// for cancel click and failed
 	//	OPP.Cancletansaction2();		// for cancel click and failed
