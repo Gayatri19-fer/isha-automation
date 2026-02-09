@@ -1,6 +1,7 @@
 package org.ishafoundation.pages.Sadhguru.Organic.occasions.Birthday;
 
-import org.ishafoundation.pages.Sadhguru.Organic.occasions.Marriage.marriageOrganicPersonalDetailsPage;
+import org.ishafoundation.pages.Sadhguru.Organic.general.OrganicpersonaldetailsPage;
+
 
 import com.microsoft.playwright.Page;
 
@@ -12,7 +13,7 @@ private Page page;
 	}
 	
 	public void completedonationflow() {
-		marriageOrganicPersonalDetailsPage mp= new marriageOrganicPersonalDetailsPage(page);
+		OrganicpersonaldetailsPage mp= new OrganicpersonaldetailsPage(page);
 			mp.EnterFirstname();
 			mp.EnterLasttname();
 			mp.EnterEmail();

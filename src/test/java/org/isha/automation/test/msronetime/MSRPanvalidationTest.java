@@ -23,7 +23,7 @@ public class MSRPanvalidationTest extends BaseTest{
 	           MsrPersonalDetailsPage personal = new MsrPersonalDetailsPage(getPage());
 
 	            // Scenario 1: Amount below 10000 – PAN not mandatory
-	            donation.EnterAmount();
+	            donation.selectAmount();
 	            donation.Donationbuttonclick2();
 	            
 	            MsrPersonalDetailsPage msrPersonal = new MsrPersonalDetailsPage(page);

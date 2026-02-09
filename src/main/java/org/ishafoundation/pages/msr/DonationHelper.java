@@ -13,7 +13,7 @@ public class DonationHelper {
 	   MsrLandingPage msrl = new MsrLandingPage(page);
        msrl.Donationbuttonclick();
        MsrDonationPage msrd = new MsrDonationPage(page);
-       msrd.EnterAmount();
+       msrd.selectAmount();
        msrd.Donationbuttonclick2();
        MsrPersonalDetailsPage msrpersonal = new MsrPersonalDetailsPage(page);
        msrpersonal.EnterFirstname();

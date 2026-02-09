@@ -3,6 +3,7 @@ package org.ishafoundation.pages.Sadhguru.Organiccorpus.general;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.LoadState;
 
 public class Corpusdonatepage {
 	private Page page;
@@ -17,7 +18,9 @@ public class Corpusdonatepage {
 	private String continueclick = "#continue";
 	
     public void selectonetime() {
+    	page.waitForLoadState(LoadState.DOMCONTENTLOADED);
         page.locator(onetime).click(); 
+       
     }
     
     public void selectamount() {

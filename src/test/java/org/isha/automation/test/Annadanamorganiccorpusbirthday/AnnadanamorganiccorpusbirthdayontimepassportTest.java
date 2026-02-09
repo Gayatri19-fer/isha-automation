@@ -17,7 +17,7 @@ import junit.framework.Assert;
 
 public class AnnadanamorganiccorpusbirthdayontimepassportTest extends BaseTest{
 	@Test(groups= {"sanity"}, retryAnalyzer = Retry.class)
-	public void annadanamorganiccorpusgeneralflow() {
+	public void morganiccorpusbirthdayflow() {
 		page.navigate("https://isha.sadhguru.org/en/contribute/annadanam");
 		LandingPage BL = new LandingPage(page);
 		Page donatepage = page.waitForPopup(() ->

@@ -3,9 +3,9 @@ package org.isha.automation.test.Annadanamorganiccorpusgeneral;
 import org.isha.automation.basetest.BaseTest;
 import org.isha.automation.basetest.Retry;
 
-import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganiccancelPage;
-import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganichelper;
-import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganicpaymentPage;
+import org.ishafoundation.pages.Sadhguru.Organic.general.OrganiccancelPage;
+import org.ishafoundation.pages.Sadhguru.Organic.general.Organichelper;
+import org.ishafoundation.pages.Sadhguru.Organic.general.OrganicpaymentPage;
 import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.LandingPage;
 import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Fetchotp;
 import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Corpusdonatepage;
@@ -23,7 +23,7 @@ import junit.framework.Assert;
 
 public class AnnadanamorganiccorpusgeneralonetimepassportTest extends BaseTest {
 	@Test(groups= {"sanity"}, retryAnalyzer = Retry.class)
-	public void annadanamorganiccorpusgeneralflow() {
+	public void organiccorpusgeneralpassflow() {
 		page.navigate("https://isha.sadhguru.org/en/contribute/annadanam");
 		LandingPage LP = new LandingPage(page);
 		Page donatePage = page.context().waitForPage(
@@ -34,6 +34,7 @@ public class AnnadanamorganiccorpusgeneralonetimepassportTest extends BaseTest {
 		);
 		donatePage.waitForLoadState(LoadState.NETWORKIDLE);
 		Corpusdonatepage gc =  new Corpusdonatepage(donatePage);
+		gc.selectonetime();
 		gc.selectonetime();
 		gc.Enteramount();
 		gc.clickcontinue();
@@ -68,7 +69,7 @@ public class AnnadanamorganiccorpusgeneralonetimepassportTest extends BaseTest {
 	//	OPP.Cancletansaction2();		// for cancel click and failed
 	//	OPP.paymentselect();			// for select payment option and cancel payment 
 		OPP.passprotflowcancleplaywright();
-		generalOrganiccancelPage OC = new generalOrganiccancelPage(donatePage);
+		OrganiccancelPage OC = new OrganiccancelPage(donatePage);
 		Assert.assertTrue(OC.iscanclePageOpen()); // for select payment option and verify cancel page
 		//Assert.assertTrue(OC.isfailedPageOpen()); // for cancel click and failed
 		OC.canclemsg();

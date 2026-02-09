@@ -33,7 +33,7 @@ public class MSRaddressvalidationbelow20kTest extends BaseTest{
 		   MsrLandingPage msrl = new MsrLandingPage(page);
 	       msrl.Donationbuttonclick();
 	       MsrDonationPage msrd = new MsrDonationPage(page);
-	       msrd.EnterAmount();
+	       msrd.selectAmount();
 	       msrd.Donationbuttonclick2();
 	       MsrPersonalDetailsPage msrpersonal = new MsrPersonalDetailsPage(page);
 	       for (Object[] data : addresses) {

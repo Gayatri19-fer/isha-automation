@@ -16,7 +16,7 @@ public class MsrDonationPage {
 	        this.page = page;
 	    }
     
-    public void EnterAmount() {
+    public void selectAmount() {
     	page.click(Amounttext);
     }
     

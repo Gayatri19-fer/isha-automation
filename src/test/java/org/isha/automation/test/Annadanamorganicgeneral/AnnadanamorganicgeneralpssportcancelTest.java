@@ -3,13 +3,13 @@ package org.isha.automation.test.Annadanamorganicgeneral;
 import java.util.List;
 import org.isha.automation.basetest.Retry;
 import org.isha.automation.basetest.BaseTest;
-import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganicDonatePage;
-import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganicLandingPage;
-import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganiccancelPage;
-import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganichelper;
-import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganicpaymentPage;
-import org.ishafoundation.pages.Sadhguru.Organic.general.generalOrganicpersonaldetailsPage;
-import org.ishafoundation.pages.Sadhguru.Organic.general.generalorganiccorpusotppage;
+import org.ishafoundation.pages.Sadhguru.Organic.general.OrganicDonatePage;
+import org.ishafoundation.pages.Sadhguru.Organic.general.OrganicLandingPage;
+import org.ishafoundation.pages.Sadhguru.Organic.general.OrganiccancelPage;
+import org.ishafoundation.pages.Sadhguru.Organic.general.Organichelper;
+import org.ishafoundation.pages.Sadhguru.Organic.general.OrganicpaymentPage;
+import org.ishafoundation.pages.Sadhguru.Organic.general.OrganicpersonaldetailsPage;
+import org.ishafoundation.pages.Sadhguru.Organic.general.Organicotppage;
 import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Fetchotp;
 import org.testng.annotations.Test;
 
@@ -22,25 +22,18 @@ import junit.framework.Assert;
 public class AnnadanamorganicgeneralpssportcancelTest extends BaseTest {
 	@Test(groups= {"sanity"}, retryAnalyzer = Retry.class)
 	public void annadanamorganicgeneralpassflow() {
-		page.navigate("https://isha.sadhguru.org/en/contribute/iyc-annadanam/donate");
-	/*	generalOrganicLandingPage OL = new generalOrganicLandingPage(page);
-		Page donatePage = page.waitForPopup(() -> {
-		    OL.donateclick();  // This click opens the new tab
-		});
-		donatePage.waitForSelector("#amt-block", 
-			    new Page.WaitForSelectorOptions().setTimeout(20000)
-			);
-
-			// Then wait for the 500 label
-			donatePage.locator("label:has-text('700')").waitFor(new Locator.WaitForOptions()
-			    .setState(WaitForSelectorState.VISIBLE)
-			    .setTimeout(15000)
-			);
-	*/
-		generalOrganicDonatePage OD = new generalOrganicDonatePage(page);
+		page.navigate("https://isha.sadhguru.org/en/contribute/iyc-annadanam");
+		OrganicLandingPage OL = new OrganicLandingPage(page);
+		Page donatePage = page.context().waitForPage(
+		()->
+		{
+			OL.generalflow();
+		}
+		);
+		OrganicDonatePage OD = new OrganicDonatePage(donatePage);
 		OD.SelectAmount();
 		OD.Continue();
-		generalOrganicpersonaldetailsPage OP = new generalOrganicpersonaldetailsPage(page);
+		OrganicpersonaldetailsPage OP = new OrganicpersonaldetailsPage(donatePage);
 		OP.EnterFirstname();
 		OP.EnterLasttname();
 		OP.EnterEmail();
@@ -56,7 +49,7 @@ public class AnnadanamorganicgeneralpssportcancelTest extends BaseTest {
 		OP.Enterpersonhonoured();
 		OP.EnterPan();
 		OP.Submit();
-		generalorganiccorpusotppage go = new generalorganiccorpusotppage(page);
+		Organicotppage go = new Organicotppage(donatePage);
 		go.getotp();
 		Fetchotp lo = new Fetchotp(page);
 		String email = "anuradha@yopmail.com";  // your Outlook email
@@ -64,12 +57,12 @@ public class AnnadanamorganicgeneralpssportcancelTest extends BaseTest {
 		String otp = lo.fetchAndEnterOtpFromYopmail(email);
 		go.enterotp(otp);
 		go.verify();
-		generalOrganicpaymentPage OPP = new generalOrganicpaymentPage(page);
+		OrganicpaymentPage OPP = new OrganicpaymentPage(donatePage);
 		OPP.cancleplaywright();
 	//	OPP.clickoncancel();		// for cancel click and failed
 	//	OPP.Cancletansaction2();		// for cancel click and failed
 		//OPP.paymentselect();			// for select payment option and cancel payment 
-		generalOrganiccancelPage OC = new generalOrganiccancelPage(page);
+		OrganiccancelPage OC = new OrganiccancelPage(donatePage);
 		Assert.assertTrue(OC.iscanclePageOpen()); // for select payment option and verify cancel page
 		//Assert.assertTrue(OC.isfailedPageOpen()); // for cancel click and failed
 		OC.canclemsg();
