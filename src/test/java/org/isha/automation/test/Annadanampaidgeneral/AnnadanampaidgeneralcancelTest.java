@@ -2,19 +2,22 @@ package org.isha.automation.test.Annadanampaidgeneral;
 
 import org.isha.automation.basetest.BaseTest;
 import org.isha.automation.basetest.Retry;
+import org.isha.automation.utils.ConfigReader;
 import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.LoginRecurringpage;
 import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdayOtpPage;
 import org.ishafoundation.pages.Sadhguru.Paidannadanam.general.generalDonatePage;
 import org.ishafoundation.pages.Sadhguru.Paidannadanam.general.generalHelper;
 import org.ishafoundation.pages.Sadhguru.Paidannadanam.general.generalcancelPage;
 import org.ishafoundation.pages.Sadhguru.Paidannadanam.general.generalpaymentPage;
+import org.ishafoundation.pages.common.Payment.PaymentPage;
+import org.ishafoundation.pages.common.Payment.PaymentPageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class AnnadanampaidgeneralcancelTest extends BaseTest {
-	@Test(groups= {"sanity"},retryAnalyzer = Retry.class)
+	@Test(groups= {"sanity","auth"},retryAnalyzer = Retry.class)
 	public void annadanampaidgeneralflow() {
-		page.navigate("https://isha.sadhguru.org/en/contribute/iyc-annadanam-pc"); 
+		page.navigate(ConfigReader.get("sadhguru.url")+ "/en/contribute/iyc-annadanam-pc"); 
 		generalDonatePage GP = new generalDonatePage(page);
 		GP.Enteramount();
 		GP.clickondonate();
@@ -25,9 +28,11 @@ public class AnnadanampaidgeneralcancelTest extends BaseTest {
 		LoginRecurringpage LO = new LoginRecurringpage(page);
 		String email = "anuradha@yopmail.com"; 
 		LO.fetchAndEnterOtpFromYopmail(email);
-		generalpaymentPage GPM = new generalpaymentPage(page);
+	//	generalpaymentPage GPM = new generalpaymentPage(page);
 	//	GPM.Cancletansaction();    // for cancel click and failed
-		GPM.paymentselect();		// for select payment option and cancel payment 
+	//	GPM.paymentselect();		// for select payment option and cancel payment 
+		PaymentPage payment = PaymentPageFactory.get(page);
+		payment.CancelInd();
 		generalcancelPage GC = new generalcancelPage(page);
 	//	Assert.assertTrue(GC.isfailedPageOpen()); 	// for cancel click and failed
 		Assert.assertTrue(GC.iscanclePageOpen());	// for select payment option and verify cancel page

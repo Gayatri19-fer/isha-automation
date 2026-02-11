@@ -8,3 +8,4 @@
 /traces/
 .project
 .settings/
+.classpath
