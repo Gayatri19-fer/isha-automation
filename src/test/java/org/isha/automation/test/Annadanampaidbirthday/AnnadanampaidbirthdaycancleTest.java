@@ -2,35 +2,54 @@ package org.isha.automation.test.Annadanampaidbirthday;
 
 import org.isha.automation.basetest.BaseTest;
 import org.isha.automation.basetest.Retry;
-import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.LoginRecurringpage;
-import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdayDonatePage;
-import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdayHelper;
+import org.isha.automation.utils.ConfigReader;
 import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdayLandingPage;
-import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdayOtpPage;
-import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdaycancelPage;
-import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdaypaymentPage;
+import org.ishafoundation.pages.Sadhguru.Paidannadanam.general.PersonaldetailsPage;
+import org.ishafoundation.pages.common.Cancelpgae;
+import org.ishafoundation.pages.common.Fetchotp;
+import org.ishafoundation.pages.common.Otppage;
+import org.ishafoundation.pages.common.Payment.PaymentPage;
+import org.ishafoundation.pages.common.Payment.PaymentPageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class AnnadanampaidbirthdaycancleTest extends BaseTest{
-	@Test(groups= {"sanity"}, retryAnalyzer = Retry.class)
-	public void annadanampaidbirthadyflow() {
-		page.navigate("https://isha.sadhguru.org/en/contribute/iyc-annadanam-pc"); 
+	@Test(groups= {"sanity","auth"}, retryAnalyzer = Retry.class)
+	public void paidbirthadyflow() {
+		page.navigate(ConfigReader.get("sadhguru.url")+ "/en/contribute/iyc-annadanam-pc"); 
 		birthdayLandingPage BD = new birthdayLandingPage(page);
 		BD.clickondonate();
-		birthdayHelper BH = new birthdayHelper(page);
-		BH.completeflow();
-		birthdayOtpPage BO = new birthdayOtpPage(page);
+		PersonaldetailsPage BP = new PersonaldetailsPage(page);
+		BP.EnterFirstname();
+		BP.EnterLasttname();
+		BP.EnterEmail();
+		BP.EnterPhonenumber();
+		BP.Selectcitizenship();
+		BP.Select80GTax();
+		BP.Selectcountry();
+		BP.Selectstate();
+		BP.Entertcity();
+		BP.EnterAddress();
+		BP.EnterPincode();
+		BP.Enterpersonhonoured();
+		BP.Enterdateodoccasion();
+		BP.EnterPan();
+		BP.Submit();
+		Otppage BO = new Otppage(page);
 		BO.getotp();
-		LoginRecurringpage LO = new LoginRecurringpage(page);
+		Fetchotp LO = new Fetchotp(page);
 		String email = "anuradha@yopmail.com"; 
-		LO.fetchAndEnterOtpFromYopmail(email);
-		birthdaypaymentPage BP = new birthdaypaymentPage(page);
+		String otp = LO.fetchAndEnterOtpFromYopmail(email);
+		BO.enterotp(otp);
+		BO.verify();
+		//birthdaypaymentPage BP = new birthdaypaymentPage(page);
 		//BP.Cancleclick();		// for cancel click and failed
-		BP.paymentselect();		// for select payment option and cancel payment 
-		birthdaycancelPage BC = new birthdaycancelPage(page);
-		Assert.assertTrue(BC.iscanclePageOpen());	// for select payment option and verify cancel page
-		//Assert.assertTrue(BC.isfailedPageOpen());	// for cancel click and failed
+		//BP.paymentselect();		// for select payment option and cancel payment 
+		PaymentPage payment = PaymentPageFactory.get(page);
+		payment.FailInd();
+		Cancelpgae BC = new Cancelpgae(page);
+		//Assert.assertTrue(BC.iscanclePageOpen());	// for select payment option and verify cancel page
+		Assert.assertTrue(BC.isfailedPageOpen());	// for cancel click and failed
 		BC.canclemsg();
 		System.out.println(BC.getPageUrl());
 		

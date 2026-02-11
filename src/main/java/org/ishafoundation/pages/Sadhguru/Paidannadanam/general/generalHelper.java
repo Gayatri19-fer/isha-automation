@@ -10,7 +10,7 @@ public class generalHelper {
 		this.page = page;
 	}
 	public void completedonationfow() {
-		generalpersonaldetailsPage gp = new generalpersonaldetailsPage(page);
+		PersonaldetailsPage gp = new PersonaldetailsPage(page);
 		gp.EnterFirstname();
 		gp.EnterLasttname();
 		gp.EnterEmail();

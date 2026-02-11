@@ -6,7 +6,8 @@ public class PaymentPageFactory {
 	
 	 public static PaymentPage get(Page page) {
 
-	        String env = System.getProperty("env", "prod");
+	        String env = System.getProperty("env", "uat");
+	        System.out.println("Running ENV = " + env);
 
 	        if (env.equalsIgnoreCase("uat")) {
 	            return new UatPaymentPage(page);

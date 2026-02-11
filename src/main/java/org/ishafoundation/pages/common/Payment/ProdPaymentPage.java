@@ -1,8 +1,10 @@
 package org.ishafoundation.pages.common.Payment;
 
+import com.microsoft.playwright.FrameLocator;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.PlaywrightException;
+import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.WaitForSelectorState;
 
 public class ProdPaymentPage implements PaymentPage{
@@ -36,6 +38,28 @@ public class ProdPaymentPage implements PaymentPage{
                 .setForce(true)
                 .setTimeout(8000));
 	    
+	}
+	public void FailInd() {
+		page.locator("//u[normalize-space()='Cancel']").click();
+		page.locator("(//article[@role='none'][normalize-space()='Confirm'])").click();
+	}
+	
+	public void cancelPassport() {
+		  page.locator("#paymentFrame").contentFrame().getByRole(AriaRole.LINK, new FrameLocator.GetByRoleOptions().setName("Cancel")).click();
+		//  page.frameLocator("#paymentFrame").locator("a.default-link.cancel-btn:text('Cancel')").click();
+		  page.frameLocator("#paymentFrame").getByText("Wish to review my order again").click();
+
+		   page.locator("#paymentFrame").contentFrame().getByRole(AriaRole.LINK, new FrameLocator.GetByRoleOptions()
+				   .setName("Submit")).click();
+		   
+	}
+	public void ccavenue() {
+		   page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel')]")
+	        .first()
+	        .click();   
+	   page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel Transaction')]")
+    .first()
+    .click();
 	}
 
 }

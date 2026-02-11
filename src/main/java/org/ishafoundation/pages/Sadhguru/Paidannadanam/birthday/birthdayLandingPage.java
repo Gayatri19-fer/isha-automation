@@ -10,9 +10,15 @@ public class birthdayLandingPage {
 	}
 
 	private String donate = "button[class='donate-btn']";
+	private String seeoption = ".other-options";
 	
 	public void clickondonate() {
 		page.click(donate);
+	}
+	
+	
+	public void Seeoption() {
+		page.click(seeoption);
 	}
 
 }
