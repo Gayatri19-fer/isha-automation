@@ -13,12 +13,17 @@ public class Corpusdonatepage {
 		this.page =page;
 	}
 
-	private String onetime = "#tab-onetime";
+	private String onetime = "(//li[@id='tab-onetime'])";
 	private String selectamount = "(//div[@class='radio'])[1]";
 	private String continueclick = "#continue";
 	
     public void selectonetime() {
-    	page.waitForLoadState(LoadState.DOMCONTENTLOADED);
+    	//page.waitForLoadState(LoadState.DOMCONTENTLOADED);
+    	//page.waitForSelector("onetime");
+    	Locator oneTimeTab = page.locator(onetime);
+
+        oneTimeTab.waitFor();
+        oneTimeTab.click(new Locator.ClickOptions().setTimeout(10000));
         page.locator(onetime).click(); 
        
     }
