@@ -18,7 +18,7 @@ public class SMDonatepage {
 		page.fill(amount, "200");
 		// amount not updating in js so added this line
 		page.evaluate("document.getElementById('hidden_donation_amount').value = '1200'");
-		page.click(click);
+		//page.click(click);
 	}
 	public void clickcontinue() {
 		page.click(click);

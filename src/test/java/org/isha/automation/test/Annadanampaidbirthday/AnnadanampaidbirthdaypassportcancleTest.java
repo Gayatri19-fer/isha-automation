@@ -5,7 +5,7 @@ import org.isha.automation.basetest.Retry;
 import org.isha.automation.utils.ConfigReader;
 import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdayLandingPage;
 import org.ishafoundation.pages.Sadhguru.Paidannadanam.general.PersonaldetailsPage;
-import org.ishafoundation.pages.common.Cancelpgae;
+import org.ishafoundation.pages.common.Cancelpage;
 import org.ishafoundation.pages.common.Fetchotp;
 import org.ishafoundation.pages.common.Otppage;
 import org.ishafoundation.pages.common.Payment.PaymentPage;
@@ -46,9 +46,9 @@ public class AnnadanampaidbirthdaypassportcancleTest extends BaseTest{
 		//BP.Cancleclick();		// for cancel click and failed
 		//BP.paymentselect();		// for select payment option and cancel payment 
 	//	BP.passprotflowcancleplaywright();
-		PaymentPage payment = PaymentPageFactory.get(page);
+		PaymentPage payment = PaymentPageFactory.get(page, false);
 		payment.cancelPassport();
-		Cancelpgae BC = new Cancelpgae(page);
+		Cancelpage BC = new Cancelpage(page);
 		String expected = ConfigReader.get("payment.expected");
 
 		if (expected.equalsIgnoreCase("cancel")) {

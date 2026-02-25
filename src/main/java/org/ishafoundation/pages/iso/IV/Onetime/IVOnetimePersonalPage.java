@@ -105,15 +105,15 @@ public class IVOnetimePersonalPage {
 	 }
 	 // Method to validate PAN field based on citizen & 80G selection
     public boolean validatePanField() {
-        boolean isIndian = page.locator("#nationality").isChecked();
-        boolean is80GTax = page.locator("#want_80G").isChecked();
+        boolean isIndian = page.locator("//input[@name='nationality' and @value='yes']").isChecked();
+        boolean is80GTax = page.locator("//input[@name='want_80G' and @value='yes']").isChecked();
 
         // PAN expected rules:
         // 1. Amount < 5k → PAN mandatory if 80G yes
         // 2. Amount > 5k → PAN mandatory regardless of selections
         // Since amount > 5k is handled in donate page, here we just check citizen & tax
 
-        boolean panExpected;
+        boolean panExpected = is80GTax;
         if (is80GTax) {
             panExpected = true;
         } else {

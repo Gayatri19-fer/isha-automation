@@ -1,4 +1,4 @@
-package org.isha.automation.test.Annadanamorganicmarriage;
+package org.isha.automation.test.Annadanamorganicbirthday;
 
 import org.isha.automation.basetest.BaseTest;
 import org.isha.automation.basetest.Retry;
@@ -17,24 +17,18 @@ import com.microsoft.playwright.Page;
 
 import junit.framework.Assert;
 
-public class AnnadanamorganicmarriagepassportcancelTest extends BaseTest{
-	@Test(groups= {"sanity","auth"},retryAnalyzer = Retry.class)
-	public void organicmarriagepassflow() {
-		page.navigate(ConfigReader.get("sadhguru.url")+ "/en/contribute/iyc-annadanam");
-		OrganicLandingPage ML = new OrganicLandingPage(page);
-		Page donatePage = page.waitForPopup(() -> {
-		    ML.weddingflow();  // This click opens the new tab
-		});
-		donatePage.waitForSelector("#amt-block", 
-			    new Page.WaitForSelectorOptions().setTimeout(20000)
-			);
+public class AnnadanamorganicbirthdaypassTest extends BaseTest{
 
-			// Then wait for the 11,000 label
-		//	donatePage.locator("label:has-text('11,000')").waitFor(new Locator.WaitForOptions()
-		//	    .setState(WaitForSelectorState.VISIBLE)
-		///	    .setTimeout(15000)
-		//	);
-		
+	@Test(groups= {"sanity","auth"}, retryAnalyzer = Retry.class)
+	public void annadanamorganicbirthdaypassflow() {
+		page.navigate(ConfigReader.get("sadhguru.url")+ "/en/contribute/iyc-annadanam");
+		OrganicLandingPage OP = new OrganicLandingPage(page);
+		Page donatePage = page.context().waitForPage(
+		()->
+		{
+			OP.birthdayflow();
+		}
+		);
 		OrganicDonatePage MD = new OrganicDonatePage(donatePage);
 	//	MD.Enteramount();
 		MD.Enteramount();
@@ -82,4 +76,5 @@ public class AnnadanamorganicmarriagepassportcancelTest extends BaseTest{
 		MC.getPageUrl();
 	}
 
+	
 }

@@ -5,7 +5,7 @@ import org.isha.automation.basetest.Retry;
 import org.isha.automation.utils.ConfigReader;
 import org.ishafoundation.pages.Sadhguru.Paidannadanam.general.generalDonatePage;
 import org.ishafoundation.pages.Sadhguru.Paidannadanam.general.PersonaldetailsPage;
-import org.ishafoundation.pages.common.Cancelpgae;
+import org.ishafoundation.pages.common.Cancelpage;
 import org.ishafoundation.pages.common.Fetchotp;
 import org.ishafoundation.pages.common.Otppage;
 import org.ishafoundation.pages.common.Payment.PaymentPage;
@@ -47,9 +47,9 @@ public class AnnadanampaidgeneralpassportcancelTest extends BaseTest {
 		//	GPM.Cancletansaction();    // for cancel click and failed
 		//GPM.paymentselect();		// for select payment option and cancel payment 
 	//	GPM.passprotflowcancleplaywright();
-		PaymentPage payment = PaymentPageFactory.get(page);
+		PaymentPage payment = PaymentPageFactory.get(page, false);
 		payment.cancelPassport();
-		Cancelpgae GC = new Cancelpgae(page);
+		Cancelpage GC = new Cancelpage(page);
 		String expected = ConfigReader.get("payment.expected");
 
 		if (expected.equalsIgnoreCase("cancel")) {

@@ -7,5 +7,10 @@ public interface PaymentPage {
 	void cancelPassport();
 	
 	void ccavenue();
+	
+	void CancelInd();
+	
+	void cancleplaywright();
+	
 
 }

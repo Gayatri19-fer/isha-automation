@@ -1,4 +1,4 @@
-package org.isha.automation.test.Annadanamorganicmarriage;
+package org.isha.automation.test.Annadanamorganicbirthday;
 
 import org.isha.automation.basetest.BaseTest;
 import org.isha.automation.basetest.Retry;
@@ -17,36 +17,29 @@ import com.microsoft.playwright.Page;
 
 import junit.framework.Assert;
 
-public class AnnadanamorganicmarriagepassportcancelTest extends BaseTest{
-	@Test(groups= {"sanity","auth"},retryAnalyzer = Retry.class)
-	public void organicmarriagepassflow() {
+public class AnnadanamorganicbirthdaycancelTest extends BaseTest{
+	@Test(groups= {"sanity","auth"}, retryAnalyzer = Retry.class)
+	public void annadanamorganicbirthdayflow() {
 		page.navigate(ConfigReader.get("sadhguru.url")+ "/en/contribute/iyc-annadanam");
-		OrganicLandingPage ML = new OrganicLandingPage(page);
-		Page donatePage = page.waitForPopup(() -> {
-		    ML.weddingflow();  // This click opens the new tab
-		});
-		donatePage.waitForSelector("#amt-block", 
-			    new Page.WaitForSelectorOptions().setTimeout(20000)
-			);
-
-			// Then wait for the 11,000 label
-		//	donatePage.locator("label:has-text('11,000')").waitFor(new Locator.WaitForOptions()
-		//	    .setState(WaitForSelectorState.VISIBLE)
-		///	    .setTimeout(15000)
-		//	);
-		
+		OrganicLandingPage OP = new OrganicLandingPage(page);
+		Page donatePage = page.context().waitForPage(
+		()->
+		{
+			OP.birthdayflow();
+		}
+		);
 		OrganicDonatePage MD = new OrganicDonatePage(donatePage);
-	//	MD.Enteramount();
 		MD.Enteramount();
 		MD.Continue();
 		OrganicpersonaldetailsPage MH = new OrganicpersonaldetailsPage(donatePage);
 		MH.EnterFirstname();
 		MH.EnterLasttname();
-		MH.EnterEmail();
 		MH.EnterPhonenumber();
+		MH.EnterEmail();
 		MH.Selectcitizenship();
 		MH.Select80GTax();
-		MH.Selectothercountry();
+		MH.Selectcountry();
+		MH.Selectstate();
 		MH.Entertcity();
 		MH.EnterAddress();
 		MH.EnterPincode();
@@ -62,24 +55,17 @@ public class AnnadanamorganicmarriagepassportcancelTest extends BaseTest{
 		MO.enterotp(otp);
 		MO.verify();
 	//	OrganicpaymentPage MP = new OrganicpaymentPage(donatePage);
-	//	MP.cancleplaywright();
 	//	MP.Cancleclick();		// for cancel click and failed
 	//	MP.paymentselect();		// for select payment option and cancel payment 
 		PaymentPage payment = PaymentPageFactory.get(donatePage, false);
-		payment.cancleplaywright();
+		payment.FailInd();
 		Cancelpage MC = new Cancelpage(donatePage);
-		String expected = ConfigReader.get("payment.expected");
-
-		if (expected.equalsIgnoreCase("cancel")) {
-		    Assert.assertTrue(MC.iscanclePageOpen());
-		} else {
-		    Assert.assertTrue(MC.isfailedPageOpen());
-		}
 	//	Assert.assertTrue(MC.iscanclePageOpen());  // for select payment option and verify cancel page
-		// Assert.assertTrue(IVC.isfailedPageOpen()); // for cancel click and failed
+		 Assert.assertTrue(MC.isfailedPageOpen()); // for cancel click and failed
 		//Assert.assertTrue("Cancel page did not load. Current URL: " + page.url(), IVC.isPageOpen());
 		MC.canclemsg();
 		MC.getPageUrl();
 	}
+
 
 }

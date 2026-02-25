@@ -18,5 +18,10 @@ public class CACAOnetimeDonationPage {
 		page.click(selectamount);
 		page.click(Clickonnext);
 	}
+	
+	public void Enteramount() {
+		page.locator("#amt-block").click();
+		page.locator("//input[@id='custom_amount']").fill("5");
+	}
 
 }

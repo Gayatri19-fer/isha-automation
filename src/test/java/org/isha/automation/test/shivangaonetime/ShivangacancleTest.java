@@ -3,7 +3,7 @@ package org.isha.automation.test.shivangaonetime;
 import org.isha.automation.basetest.BaseTest;
 import org.isha.automation.basetest.Retry;
 import org.isha.automation.utils.ConfigReader;
-import org.ishafoundation.pages.common.Cancelpgae;
+import org.ishafoundation.pages.common.Cancelpage;
 import org.ishafoundation.pages.common.Payment.PaymentPage;
 import org.ishafoundation.pages.common.Payment.PaymentPageFactory;
 import org.ishafoundation.pages.shivanga.DonationHelpershivanga;
@@ -25,9 +25,9 @@ public class ShivangacancleTest extends BaseTest{
 		dd.dontionfow();
 	//	ShivangapaymentPage sp = new ShivangapaymentPage(page);
 		//sp.cancelplaywright();
-		PaymentPage payment = PaymentPageFactory.get(page);
+		PaymentPage payment = PaymentPageFactory.get(page, false);
 		payment.ccavenue();
-		Cancelpgae sc = new Cancelpgae(page);
+		Cancelpage sc = new Cancelpage(page);
 		Assert.assertTrue(sc.iscanclePageOpen());	//  to validate cancel page open or not
 		sc.canclemsg();
 		sc.getPageUrl();

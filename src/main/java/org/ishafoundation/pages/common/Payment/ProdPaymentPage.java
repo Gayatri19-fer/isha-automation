@@ -1,5 +1,6 @@
 package org.ishafoundation.pages.common.Payment;
 
+import com.microsoft.playwright.Frame;
 import com.microsoft.playwright.FrameLocator;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
@@ -38,10 +39,26 @@ public class ProdPaymentPage implements PaymentPage{
                 .setForce(true)
                 .setTimeout(8000));
 	    
+	    
 	}
 	public void FailInd() {
-		page.locator("//u[normalize-space()='Cancel']").click();
-		page.locator("(//article[@role='none'][normalize-space()='Confirm'])").click();
+		System.out.println("URL: " + page.url());
+
+		System.out.println("Count: " +
+		    page.locator("div[configpath='Exit.SecondaryButton']").count());
+
+		System.out.println("Visible: " +
+		    page.locator("div[configpath='Exit.SecondaryButton']").isVisible());
+		 Locator cancelBtn = page.locator("div[configpath='Exit.SecondaryButton']");
+		 cancelBtn.waitFor(new Locator.WaitForOptions()
+			        .setState(WaitForSelectorState.VISIBLE));
+		    cancelBtn.click(new Locator.ClickOptions().setTimeout(10000));
+
+		    Locator confirmBtn = page.locator("//div[@role='button'][normalize-space()='Confirm']");
+		    confirmBtn.waitFor(new Locator.WaitForOptions()
+		            .setState(WaitForSelectorState.ATTACHED));
+
+		    confirmBtn.click(new Locator.ClickOptions().setTimeout(10000));
 	}
 	
 	public void cancelPassport() {
@@ -52,14 +69,61 @@ public class ProdPaymentPage implements PaymentPage{
 		   page.locator("#paymentFrame").contentFrame().getByRole(AriaRole.LINK, new FrameLocator.GetByRoleOptions()
 				   .setName("Submit")).click();
 		   
-	}
-	public void ccavenue() {
-		   page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel')]")
+
+	    }
+	   public void cancleplaywright() {
+		    //  page.locator("#paymentFrame").contentFrame().getByRole(AriaRole.LINK, new FrameLocator.GetByRoleOptions().setName("Cancel")).click();
+		  // page.locator("#paymentFrame").contentFrame().getByRole(AriaRole.LINK, new FrameLocator.GetByRoleOptions().setName("Cancel Transaction")).click();
+		   FrameLocator frame = page.frameLocator("#paymentFrame");
+		   frame.locator("a.secondary-link.cancel")
+	         .first()
+	         .click(new Locator.ClickOptions().setTimeout(10000));
+		   
+		   frame.locator("//a[contains(normalize-space(), 'Cancel Transaction')]").click();
+		/*   page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel')]")
+		        .first()
+		        .click();   
+		   page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel Transaction')]")
 	        .first()
-	        .click();   
+	        .click()*/
+		    }
+  
+	
+	public void ccavenue() {
+		 Locator cancellink=  page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel')]")
+			        .first();
+				 cancellink.waitFor();
+				 cancellink.click();
 	   page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel Transaction')]")
     .first()
     .click();
 	}
+
+	public void paymentselectind() {
+		Locator wallate = page.locator("(//article[@role='none'][normalize-space()='Wallets'])");
+		wallate.click();
+		Locator option = page.locator("//div[@testid='pi_wallet_jiomoney']");
+		page.waitForTimeout(300); 
+	    try {
+	    	option.waitFor(new Locator.WaitForOptions()
+	                .setState(WaitForSelectorState.VISIBLE)
+	                .setTimeout(8000));
+	        page.waitForTimeout(200); // allow animation to settle
+	        option.scrollIntoViewIfNeeded();
+	        option.click(new Locator.ClickOptions()
+	                .setForce(true)
+	                .setTimeout(8000));
+	     //   System.out.println("option selected successfully.");
+	    } catch (PlaywrightException e) {
+	        throw new RuntimeException("❌ Failed to click on option ", e);
+	    }
+	    
+	    Locator pay = page.locator("div[testid='btn_pay'] article[role='none']:has-text('proceed to pay')");
+	    pay.click(new Locator.ClickOptions()
+                .setForce(true)
+                .setTimeout(8000));
+	    
+	}
+
 
 }

@@ -1,16 +1,20 @@
 package org.ishafoundation.pages.common.Payment;
 
+import com.microsoft.playwright.Frame;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.PlaywrightException;
+import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.WaitForSelectorState;
 
 public class UatPaymentPage implements PaymentPage{
     private Page page;
+    private boolean isDiffLocator;
 
-    public UatPaymentPage(Page page) {
+    public UatPaymentPage(Page page, boolean isDiffLocator) {
         this.page = page;
+        this.isDiffLocator = isDiffLocator;
     }
 	public void CancelInd() {
 		page.waitForLoadState(LoadState.NETWORKIDLE);
@@ -24,27 +28,110 @@ public class UatPaymentPage implements PaymentPage{
 		});
 		page1.locator("#status").selectOption("N");	
 		page1.locator("//button[@id='btn']").click();
+		
+		Locator ifotheroption = page.locator("//u[normalize-space()='Other Payment Options']");
+		try {
+			ifotheroption.waitFor(new Locator.WaitForOptions().setTimeout(5000));
+			ifotheroption.click();
+			page.waitForLoadState();
+			page.locator("//u[normalize-space()='Cancel']").click();
+			
+			page.locator("(//article[@role='none'][normalize-space()='Confirm'])").click();
+		}catch (PlaywrightException e){
+			 System.out.println("Directly redirected to Cancel page.");
+		}
 	    
 	}
 
 	public void FailInd() {
+		 Locator cancelBtn = page.locator("div[configpath='Exit.SecondaryButton']");
+		 cancelBtn.waitFor(new Locator.WaitForOptions()
+			        .setState(WaitForSelectorState.VISIBLE));
+		    cancelBtn.click(new Locator.ClickOptions().setTimeout(10000));
 
-		page.locator("//u[normalize-space()='Cancel']").click();
-		page.locator("(//article[@role='none'][normalize-space()='Confirm'])").click();
+		    Locator confirmBtn = page.locator("//div[@role='button'][normalize-space()='Confirm']");
+		    confirmBtn.waitFor(new Locator.WaitForOptions()
+		            .setState(WaitForSelectorState.ATTACHED));
+
+		    confirmBtn.click(new Locator.ClickOptions().setTimeout(10000));
 		
 	}
 	public void cancelPassport() {
-		page.locator("//u[normalize-space()='Cancel']").click();
-		page.locator("(//article[@role='none'][normalize-space()='Confirm'])").click();
+		 Locator cancelBtn = page.locator("(//u[normalize-space()='Cancel'])[1]");
+		 cancelBtn.waitFor(new Locator.WaitForOptions()
+			        .setState(WaitForSelectorState.VISIBLE));
+		    cancelBtn.click(new Locator.ClickOptions().setTimeout(10000));
+
+		    Locator confirmBtn = page.locator("//article[@role='none'][normalize-space()='Confirm']");
+		    confirmBtn.waitFor(new Locator.WaitForOptions()
+		            .setState(WaitForSelectorState.ATTACHED));
+
+		    confirmBtn.click(new Locator.ClickOptions().setTimeout(10000));
 	}
+	public void cancleplaywright() {
+		    //  page.locator("#paymentFrame").contentFrame().getByRole(AriaRole.LINK, new FrameLocator.GetByRoleOptions().setName("Cancel")).click();
+		  // page.locator("#paymentFrame").contentFrame().getByRole(AriaRole.LINK, new FrameLocator.GetByRoleOptions().setName("Cancel Transaction")).click();
+		   Frame frame = page.frame("paymentFrame");
+		   frame.locator("a.secondary-link.cancel").click();
+		   frame.locator("//a[contains(normalize-space(), 'Cancel Transaction')]").click();
+		  /* page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel')]")
+		        .first()
+		        .click();   
+		   page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel Transaction')]")
+	        .first()
+	        .click();
+	        */
+		    }
 	
 	public void ccavenue() {
-		   page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel')]")
-	        .first()
-	        .click();   
+		
+	
+		if(isDiffLocator) {
+			
+			page.locator("(//div[@id='buttons'])[1]").click();
+			page.locator("(//a[@class='secondary-link cancel'][normalize-space()='Cancel'])[1]").click();
+			page.locator("//div[@id='cancel-transaction-feedback']").click();
+			page.locator("(//a[@class='primary-button primary-button-bg radius4 confirmCancel'])[1]").click();
+		      
+		}else {
+		 Locator cancellink=  page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel')]")
+	        .first();
+		 cancellink.waitFor();
+		 cancellink.click();   
 	   page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel Transaction')]")
        .first()
        .click();
+		}
 		
+	}
+	
+	public void LGuatcancel() {
+		page.locator("//div[@class='tabcontent OPTCRDC resp-tab-content resp-tab-content-active']//a[@class='secondary-link cancel'][normalize-space()='Cancel']").click();
+	      page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Cancel Transaction")).click();
+	}
+	public void paymentselectind() {
+		Locator wallate = page.locator("(//article[@role='none'][normalize-space()='NetBanking'])");
+		wallate.click();
+		Locator option = page.locator("//div[@testid='clk_select_li_test']");
+		page.waitForTimeout(300); 
+	    try {
+	    	option.waitFor(new Locator.WaitForOptions()
+	                .setState(WaitForSelectorState.VISIBLE)
+	                .setTimeout(8000));
+	        page.waitForTimeout(200); // allow animation to settle
+	        option.scrollIntoViewIfNeeded();
+	        option.click(new Locator.ClickOptions()
+	                .setForce(true)
+	                .setTimeout(8000));
+	     //   System.out.println("option selected successfully.");
+	    } catch (PlaywrightException e) {
+	        throw new RuntimeException("❌ Failed to click on option ", e);
+	    }
+	    
+	    Locator pay = page.locator("div[testid='btn_pay'] article[role='none']:has-text('proceed to pay')");
+	    pay.click(new Locator.ClickOptions()
+                .setForce(true)
+                .setTimeout(8000));
+	    
 	}
 }

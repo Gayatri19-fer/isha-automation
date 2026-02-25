@@ -18,7 +18,11 @@ public class Corpusdonatepage {
 	private String continueclick = "#continue";
 	
     public void selectonetime() {
-    	page.waitForLoadState(LoadState.DOMCONTENTLOADED);
+    	//page.waitForLoadState(LoadState.DOMCONTENTLOADED);
+    	Locator oneTimeTab = page.locator(onetime);
+
+        oneTimeTab.waitFor();
+        oneTimeTab.click(new Locator.ClickOptions().setTimeout(10000));
         page.locator(onetime).click(); 
        
     }

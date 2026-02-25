@@ -2,14 +2,15 @@ package org.isha.automation.test.Annadanamorganicmarriage;
 
 import org.isha.automation.basetest.BaseTest;
 import org.isha.automation.basetest.Retry;
-import org.ishafoundation.pages.Sadhguru.Organic.general.FetchOtppage;
+import org.isha.automation.utils.ConfigReader;
 import org.ishafoundation.pages.Sadhguru.Organic.general.OrganicDonatePage;
 import org.ishafoundation.pages.Sadhguru.Organic.general.OrganicLandingPage;
-import org.ishafoundation.pages.Sadhguru.Organic.general.OrganiccancelPage;
-import org.ishafoundation.pages.Sadhguru.Organic.general.Organicotppage;
-import org.ishafoundation.pages.Sadhguru.Organic.general.OrganicpaymentPage;
 import org.ishafoundation.pages.Sadhguru.Organic.general.OrganicpersonaldetailsPage;
-
+import org.ishafoundation.pages.common.Cancelpage;
+import org.ishafoundation.pages.common.Fetchotp;
+import org.ishafoundation.pages.common.Otppage;
+import org.ishafoundation.pages.common.Payment.PaymentPage;
+import org.ishafoundation.pages.common.Payment.PaymentPageFactory;
 import org.testng.annotations.Test;
 
 
@@ -19,9 +20,9 @@ import com.microsoft.playwright.Page;
 import junit.framework.Assert;
 
 public class AnnadanamorganicmarriagecancelTest extends BaseTest{
-	@Test(groups= {"sanity"}, retryAnalyzer = Retry.class)
+	@Test(groups= {"sanity","auth"}, retryAnalyzer = Retry.class)
 	public void annadanamorganicmarriageflow() {
-		page.navigate("https://isha.sadhguru.org/en/contribute/iyc-annadanam");
+		page.navigate(ConfigReader.get("sadhguru.url")+ "/en/contribute/iyc-annadanam");
 		OrganicLandingPage OP = new OrganicLandingPage(page);
 		Page donatePage = page.context().waitForPage(
 		()->
@@ -48,19 +49,21 @@ public class AnnadanamorganicmarriagecancelTest extends BaseTest{
 		MH.Enterdateodoccasion();
 		MH.EnterPan();
 		MH.Submit();
-		Organicotppage MO = new Organicotppage(donatePage);
+		Otppage MO = new Otppage(donatePage);
 		MO.getotp();
-		FetchOtppage LO = new FetchOtppage(donatePage);
+		Fetchotp LO = new Fetchotp(donatePage);
 		String email = "anuradha@yopmail.com";  // your Outlook email
 		String otp = LO.fetchAndEnterOtpFromYopmail(email);
 		MO.enterotp(otp);
 		MO.verify();
-		OrganicpaymentPage MP = new OrganicpaymentPage(donatePage);
+	//	OrganicpaymentPage MP = new OrganicpaymentPage(donatePage);
 	//	MP.Cancleclick();		// for cancel click and failed
-		MP.paymentselect();		// for select payment option and cancel payment 
-		OrganiccancelPage MC = new OrganiccancelPage(donatePage);
-		Assert.assertTrue(MC.iscanclePageOpen());  // for select payment option and verify cancel page
-		// Assert.assertTrue(IVC.isfailedPageOpen()); // for cancel click and failed
+	//	MP.paymentselect();		// for select payment option and cancel payment 
+		PaymentPage payment = PaymentPageFactory.get(donatePage, false);
+		payment.FailInd();
+		Cancelpage MC = new Cancelpage(donatePage);
+	//	Assert.assertTrue(MC.iscanclePageOpen());  // for select payment option and verify cancel page
+		 Assert.assertTrue(MC.isfailedPageOpen()); // for cancel click and failed
 		//Assert.assertTrue("Cancel page did not load. Current URL: " + page.url(), IVC.isPageOpen());
 		MC.canclemsg();
 		MC.getPageUrl();
