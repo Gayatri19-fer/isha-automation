@@ -2,6 +2,7 @@ package org.ishafoundation.pages.LB;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.WaitForSelectorState;
 
 public class LBPersonalePage {
 	private Page page;
@@ -55,13 +56,16 @@ public class LBPersonalePage {
 	    }
 	    
 		public boolean isPanoptiondispayed() {
-		    try {
-		        // Wait max 2 seconds for the PAN field to appear (or disappear)
-		        page.locator(Pancard).waitFor(new Locator.WaitForOptions().setTimeout(2000));
-		        return page.locator(Pancard).isVisible();
-		    } catch (Exception e) {
-		        return false; // If element never appears, return false
-		    }
+			 Locator pan = page.locator("#pancard");
+
+			    try {
+			        pan.waitFor(new Locator.WaitForOptions()
+			                .setState(WaitForSelectorState.VISIBLE)
+			                .setTimeout(10000));
+			        return true;
+			    } catch (Exception e) {
+			        return false;
+			    }
 		 }
 
 	  

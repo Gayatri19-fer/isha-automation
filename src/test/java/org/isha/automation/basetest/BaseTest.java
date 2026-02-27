@@ -1,29 +1,22 @@
 package org.isha.automation.basetest;
 
-import java.io.File;
+import java.lang.reflect.Method;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.isha.automation.utils.ConfigReader;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.ExtentReports;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.Tracing;
-
-import Resources.BaseExtentReport;
-import Resources.ExtentReportManager;
 
 public class BaseTest {
 
@@ -37,7 +30,7 @@ public class BaseTest {
  
 
 	    @BeforeMethod
-	    public void setUp(ITestContext testContext) {
+	    public void setUp(ITestContext testContext ,Method method) {
 	        playwright = Playwright.create();
 	        String browserName = System.getProperty("browser") != null 
 	        	    ? System.getProperty("browser") 
@@ -46,18 +39,29 @@ public class BaseTest {
 	                : browserName.equalsIgnoreCase("firefox") ? playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(false))
 	                : browserName.equalsIgnoreCase("safari") ? playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false))
 	                : playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false)); // fallback default
-	       context = browser.newContext(new Browser.NewContextOptions()
-	               .setViewportSize(1366,607));
-	        //change be below line 32 commented aboveline- now comen line33
-	       // BrowserContext context = browser.newContext();
-	       context.tracing().start(new Tracing.StartOptions()
-	                .setScreenshots(true)
-	                .setSnapshots(true)
-	                .setSources(true));
-	        page = context.newPage();
-	        threadPage.set(page);
-	        testContext.setAttribute("page", page);
+	      
+	        boolean needAuth = Arrays.asList(method.getAnnotation(Test.class).groups()) .contains("auth"); 
+	        boolean authEnabled = Boolean.parseBoolean( ConfigReader.get("auth.enabled") ); 
+	        Browser.NewContextOptions options = new Browser.NewContextOptions() .setViewportSize(1366, 607); 
+	        if (needAuth && authEnabled)
+	        {
+	        	options.setHttpCredentials(
+	        			ConfigReader.get("auth.user"),
+	        		    ConfigReader.get("auth.pass")); 
+	        }
+	        
+	        	context = browser.newContext(options); 
+	        	startTracing(context); 
+	        
+	         // BrowserContext context = browser.newContext(); 
+	         page = context.newPage(); 
+	         threadPage.set(page); 
+	         testContext.setAttribute("page", page);
 	    }
+	    
+	    private void startTracing(BrowserContext ctx) { context.tracing().start(new Tracing.StartOptions()
+	    		.setScreenshots(true).setSnapshots(true).setSources(true)); }
+	    
 	   @AfterMethod (alwaysRun = true)
 	   public void tearDown(ITestResult result) {
 

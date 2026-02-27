@@ -8,6 +8,9 @@ import org.ishafoundation.pages.shivanga.ShivangadonatePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.options.WaitForSelectorState;
+
 public class LSGPanvalidationTest extends BaseTest{
 	@Test
 	public void LSGverifyPanMandatoryCondition() {
@@ -29,7 +32,8 @@ public class LSGPanvalidationTest extends BaseTest{
           // Scenario 2: Amount above 5000 – PAN mandatory
           donation.entercustomamount();
           donation.continueclick();
-          page.waitForTimeout(15000);
+          page.locator("#pancard")
+          .waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(50000));
           Assert.assertTrue(personal.isPanoptiondispayed(), 
                   "PAN field should be displayed for amount above 5000");
   }

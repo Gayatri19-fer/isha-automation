@@ -1,4 +1,4 @@
-package org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday;
+package org.ishafoundation.pages.common;
 
 import org.ishafoundation.pages.iso.IV.Recurring.YopmailutilityPage;
 
@@ -7,12 +7,12 @@ import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 
-public class LoginRecurringpage {
+public class Fetchotp {
 	
 	private Page page;
 	
 	
-	public LoginRecurringpage(Page page) {
+	public Fetchotp(Page page) {
 		this.page =page;
 		// added below line 15 and pass this Browser browser
 		
@@ -45,7 +45,7 @@ public class LoginRecurringpage {
         page.locator(pay).click();
     }
     
-    public void fetchAndEnterOtpFromYopmail(String email) {
+    public String fetchAndEnterOtpFromYopmail(String email) {
     	try (Playwright playwright2 = Playwright.create()) {
             Browser tempBrowser = playwright2.chromium().launch(new BrowserType.LaunchOptions()
             		.setHeadless(false));
@@ -58,7 +58,7 @@ public class LoginRecurringpage {
 
         // Wait and fetch OTP
         int maxWait = 120; // 2 minutes
-        int pollInterval = 5; // seconds
+        int pollInterval = 6; // seconds
         String otp = yop.waitForOtp(maxWait, pollInterval);
         System.out.println("Fetched OTP: " + otp);
 
@@ -70,9 +70,7 @@ public class LoginRecurringpage {
         page.bringToFront();
 
         // Enter and submit OTP
-        page.fill(enterfetchotp, otp);
-        page.locator(verify).click();
-        page.locator(pay).click();
+        return otp;
     	}
     }
 	

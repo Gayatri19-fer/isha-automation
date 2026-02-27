@@ -2,24 +2,24 @@ package org.isha.automation.test.Annadanampaidbirthday;
 
 import org.isha.automation.basetest.BaseTest;
 import org.isha.automation.basetest.Retry;
-import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.LoginRecurringpage;
-import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdayDonatePage;
-import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdayHelper;
+import org.isha.automation.utils.ConfigReader;
 import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdayLandingPage;
-import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdayOtpPage;
-import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdaycancelPage;
-import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdaypaymentPage;
-import org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday.birthdaypersonalPage;
+import org.ishafoundation.pages.Sadhguru.Paidannadanam.general.PersonaldetailsPage;
+import org.ishafoundation.pages.common.Cancelpage;
+import org.ishafoundation.pages.common.Fetchotp;
+import org.ishafoundation.pages.common.Otppage;
+import org.ishafoundation.pages.common.Payment.PaymentPage;
+import org.ishafoundation.pages.common.Payment.PaymentPageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class AnnadanampaidbirthdaypassportcancleTest extends BaseTest{
-	@Test(groups= {"sanity"}, retryAnalyzer = Retry.class)
-	public void annadanampaidbirthadyflow() {
-		page.navigate("https://isha.sadhguru.org/en/contribute/iyc-annadanam-pc"); 
+	@Test(groups= {"sanity","auth"}, retryAnalyzer = Retry.class)
+	public void paidbirthadypassflow() {
+		page.navigate(ConfigReader.get("sadhguru.url")+ "/en/contribute/iyc-annadanam-pc"); 
 		birthdayLandingPage BD = new birthdayLandingPage(page);
 		BD.clickondonate();
-		birthdaypersonalPage BPP = new birthdaypersonalPage(page);
+		PersonaldetailsPage BPP = new PersonaldetailsPage(page);
 		BPP.EnterFirstname();
 		BPP.EnterLasttname();
 		BPP.EnterEmail();
@@ -34,18 +34,30 @@ public class AnnadanampaidbirthdaypassportcancleTest extends BaseTest{
 		BPP.Enterdateodoccasion();
 		BPP.EnterPan();
 		BPP.Submit();
-		birthdayOtpPage BO = new birthdayOtpPage(page);
+		Otppage BO = new Otppage(page);
 		BO.getotp();
-		LoginRecurringpage LO = new LoginRecurringpage(page);
+		Fetchotp LO = new Fetchotp(page);
 		String email = "anuradha@yopmail.com"; 
-		LO.fetchAndEnterOtpFromYopmail(email);
-		birthdaypaymentPage BP = new birthdaypaymentPage(page);
+		String otp = LO.fetchAndEnterOtpFromYopmail(email);
+		BO.enterotp(otp);
+		BO.verify();
+	//	birthdaypaymentPage BP = new birthdaypaymentPage(page);
 		//BP.passprotflowcancleplaywright();
 		//BP.Cancleclick();		// for cancel click and failed
 		//BP.paymentselect();		// for select payment option and cancel payment 
-		BP.passprotflowcancleplaywright();
-		birthdaycancelPage BC = new birthdaycancelPage(page);
-		Assert.assertTrue(BC.iscanclePageOpen());	// for select payment option and verify cancel page
+	//	BP.passprotflowcancleplaywright();
+		PaymentPage payment = PaymentPageFactory.get(page, false);
+		payment.cancelPassport();
+		Cancelpage BC = new Cancelpage(page);
+		String expected = ConfigReader.get("payment.expected");
+
+		if (expected.equalsIgnoreCase("cancel")) {
+		    Assert.assertTrue(BC.iscanclePageOpen());
+		} else {
+		    Assert.assertTrue(BC.isfailedPageOpen());
+		}
+	
+		//Assert.assertTrue(BC.iscanclePageOpen());	// for select payment option and verify cancel page
 		//Assert.assertTrue(BC.isfailedPageOpen());	// for cancel click and failed
 		BC.canclemsg();
 		System.out.println(BC.getPageUrl());

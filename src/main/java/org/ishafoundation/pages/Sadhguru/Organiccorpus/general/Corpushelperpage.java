@@ -1,6 +1,6 @@
 package org.ishafoundation.pages.Sadhguru.Organiccorpus.general;
 
-import org.ishafoundation.pages.Sadhguru.Paidannadanam.general.generalpersonaldetailsPage;
+import org.ishafoundation.pages.Sadhguru.Paidannadanam.general.PersonaldetailsPage;
 
 import com.microsoft.playwright.Page;
 

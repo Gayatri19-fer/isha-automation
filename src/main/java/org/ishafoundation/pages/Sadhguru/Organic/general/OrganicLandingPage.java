@@ -16,13 +16,13 @@ public class OrganicLandingPage {
 		//page.locator("(//div[@class='image-content'])[1]//a[normalize-space(text())='Learn more']").click();
 	}
 	public void weddingflow() {
-		page.locator("//a[@href='https://isha.sadhguru.org/en/contribute/iyc-annadanam/donate/wedding']").click();
+		page.locator("//a[contains(@href,'/donate/wedding')]").click();
 	}
 	public void birthdayflow() {
-		page.locator("//a[@href='https://isha.sadhguru.org/en/contribute/iyc-annadanam/donate/birthday']").click();
+		page.locator("//a[contains(@href,'/donate/birthday')]").click();
 	}
 	public void Remembraceflow() {
-		page.locator("//a[@href='https://isha.sadhguru.org/en/contribute/iyc-annadanam/donate/in-memorial-of']").click();
+		page.locator("//a[contains(@href,'/donate/in-memorial-of')]").click();
 	}
 
 }

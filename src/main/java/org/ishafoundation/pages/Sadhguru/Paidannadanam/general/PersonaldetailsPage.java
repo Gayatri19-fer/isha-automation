@@ -7,10 +7,10 @@ import java.time.format.DateTimeFormatter;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
-public class generalpersonaldetailsPage {
+public class PersonaldetailsPage {
 	private Page page;
 	
-	public generalpersonaldetailsPage(Page page) {
+	public PersonaldetailsPage(Page page) {
 		this.page = page;
 	}
 	

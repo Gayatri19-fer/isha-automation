@@ -1,4 +1,4 @@
-package org.ishafoundation.pages.Sadhguru.Paidannadanam.birthday;
+package org.ishafoundation.pages.common;
 
 import java.time.Duration;
 import java.time.Instant;

@@ -26,7 +26,7 @@ public class LBDonationPage {
     
     public void entercustomamount() {
         	page.locator(customeamount).click();
-        	page.fill(customeamount1, "5000");
+        	page.fill(customeamount1, "50000");
         	page.evaluate("document.getElementById('hidden_donation_amount').value = '1200'");
     		
         	

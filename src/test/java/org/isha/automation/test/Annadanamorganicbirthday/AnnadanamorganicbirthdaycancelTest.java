@@ -1,4 +1,4 @@
-package org.isha.automation.test.Annadanamorganicmarriage;
+package org.isha.automation.test.Annadanamorganicbirthday;
 
 import org.isha.automation.basetest.BaseTest;
 import org.isha.automation.basetest.Retry;
@@ -13,21 +13,19 @@ import org.ishafoundation.pages.common.Payment.PaymentPage;
 import org.ishafoundation.pages.common.Payment.PaymentPageFactory;
 import org.testng.annotations.Test;
 
-
 import com.microsoft.playwright.Page;
-
 
 import junit.framework.Assert;
 
-public class AnnadanamorganicmarriagecancelTest extends BaseTest{
+public class AnnadanamorganicbirthdaycancelTest extends BaseTest{
 	@Test(groups= {"sanity","auth"}, retryAnalyzer = Retry.class)
-	public void organicmarriageflow() {
+	public void annadanamorganicbirthdayflow() {
 		page.navigate(ConfigReader.get("sadhguru.url")+ "/en/contribute/iyc-annadanam");
 		OrganicLandingPage OP = new OrganicLandingPage(page);
 		Page donatePage = page.context().waitForPage(
 		()->
 		{
-			OP.weddingflow();
+			OP.birthdayflow();
 		}
 		);
 		OrganicDonatePage MD = new OrganicDonatePage(donatePage);
@@ -68,5 +66,6 @@ public class AnnadanamorganicmarriagecancelTest extends BaseTest{
 		MC.canclemsg();
 		MC.getPageUrl();
 	}
+
 
 }

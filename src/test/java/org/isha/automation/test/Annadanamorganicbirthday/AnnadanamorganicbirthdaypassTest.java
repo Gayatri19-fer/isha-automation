@@ -1,4 +1,4 @@
-package org.isha.automation.test.Annadanamorganicmarriage;
+package org.isha.automation.test.Annadanamorganicbirthday;
 
 import org.isha.automation.basetest.BaseTest;
 import org.isha.automation.basetest.Retry;
@@ -13,35 +13,34 @@ import org.ishafoundation.pages.common.Payment.PaymentPage;
 import org.ishafoundation.pages.common.Payment.PaymentPageFactory;
 import org.testng.annotations.Test;
 
-
 import com.microsoft.playwright.Page;
-
 
 import junit.framework.Assert;
 
-public class AnnadanamorganicmarriagecancelTest extends BaseTest{
+public class AnnadanamorganicbirthdaypassTest extends BaseTest{
+
 	@Test(groups= {"sanity","auth"}, retryAnalyzer = Retry.class)
-	public void organicmarriageflow() {
+	public void annadanamorganicbirthdaypassflow() {
 		page.navigate(ConfigReader.get("sadhguru.url")+ "/en/contribute/iyc-annadanam");
 		OrganicLandingPage OP = new OrganicLandingPage(page);
 		Page donatePage = page.context().waitForPage(
 		()->
 		{
-			OP.weddingflow();
+			OP.birthdayflow();
 		}
 		);
 		OrganicDonatePage MD = new OrganicDonatePage(donatePage);
+	//	MD.Enteramount();
 		MD.Enteramount();
 		MD.Continue();
 		OrganicpersonaldetailsPage MH = new OrganicpersonaldetailsPage(donatePage);
 		MH.EnterFirstname();
 		MH.EnterLasttname();
-		MH.EnterPhonenumber();
 		MH.EnterEmail();
+		MH.EnterPhonenumber();
 		MH.Selectcitizenship();
 		MH.Select80GTax();
-		MH.Selectcountry();
-		MH.Selectstate();
+		MH.Selectothercountry();
 		MH.Entertcity();
 		MH.EnterAddress();
 		MH.EnterPincode();
@@ -57,16 +56,25 @@ public class AnnadanamorganicmarriagecancelTest extends BaseTest{
 		MO.enterotp(otp);
 		MO.verify();
 	//	OrganicpaymentPage MP = new OrganicpaymentPage(donatePage);
+	//	MP.cancleplaywright();
 	//	MP.Cancleclick();		// for cancel click and failed
 	//	MP.paymentselect();		// for select payment option and cancel payment 
 		PaymentPage payment = PaymentPageFactory.get(donatePage, false);
-		payment.FailInd();
+		payment.cancleplaywright();
 		Cancelpage MC = new Cancelpage(donatePage);
+		String expected = ConfigReader.get("payment.expected");
+
+		if (expected.equalsIgnoreCase("cancel")) {
+		    Assert.assertTrue(MC.iscanclePageOpen());
+		} else {
+		    Assert.assertTrue(MC.isfailedPageOpen());
+		}
 	//	Assert.assertTrue(MC.iscanclePageOpen());  // for select payment option and verify cancel page
-		 Assert.assertTrue(MC.isfailedPageOpen()); // for cancel click and failed
+		// Assert.assertTrue(IVC.isfailedPageOpen()); // for cancel click and failed
 		//Assert.assertTrue("Cancel page did not load. Current URL: " + page.url(), IVC.isPageOpen());
 		MC.canclemsg();
 		MC.getPageUrl();
 	}
 
+	
 }
