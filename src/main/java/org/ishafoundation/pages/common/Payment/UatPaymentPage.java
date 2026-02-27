@@ -84,10 +84,10 @@ public class UatPaymentPage implements PaymentPage{
 		page.locator("div[configpath='Exit.SecondaryButton']")
 	    .click();
 		
-		Locator cancel = page.locator("//article[normalize-space()='Confirm']");
+		Locator cancel = page.locator("//div[@configpath='ExitPopup.Popup']"); //page.locator("//article[normalize-space()='Confirm']");
 		cancel.waitFor(new Locator.WaitForOptions()
 		        .setState(WaitForSelectorState.VISIBLE));
-		cancel.click();
+		page.locator("[testid='btn_yes']").click();
 	        
 		    }
 	
