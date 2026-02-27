@@ -21,7 +21,7 @@ import junit.framework.Assert;
 
 public class AnnadanamorganicmarriagecancelTest extends BaseTest{
 	@Test(groups= {"sanity","auth"}, retryAnalyzer = Retry.class)
-	public void annadanamorganicmarriageflow() {
+	public void organicmarriageflow() {
 		page.navigate(ConfigReader.get("sadhguru.url")+ "/en/contribute/iyc-annadanam");
 		OrganicLandingPage OP = new OrganicLandingPage(page);
 		Page donatePage = page.context().waitForPage(

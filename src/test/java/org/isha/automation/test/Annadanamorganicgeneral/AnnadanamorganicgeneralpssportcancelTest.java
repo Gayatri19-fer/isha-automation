@@ -62,7 +62,8 @@ public class AnnadanamorganicgeneralpssportcancelTest extends BaseTest {
 	//	OPP.Cancletansaction2();		// for cancel click and failed
 		//OPP.paymentselect();			// for select payment option and cancel payment 
 		PaymentPage payment = PaymentPageFactory.get(donatePage, false);
-		payment.cancelPassport();
+		//payment.cancelPassport();	//for uat
+		payment.ccavenue();      // for prod
 		Cancelpage GC = new Cancelpage(donatePage);
 		String expected = ConfigReader.get("payment.expected");
 

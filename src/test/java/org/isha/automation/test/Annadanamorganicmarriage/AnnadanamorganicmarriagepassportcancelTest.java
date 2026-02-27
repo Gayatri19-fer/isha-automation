@@ -32,7 +32,7 @@ public class AnnadanamorganicmarriagepassportcancelTest extends BaseTest{
 			// Then wait for the 11,000 label
 		//	donatePage.locator("label:has-text('11,000')").waitFor(new Locator.WaitForOptions()
 		//	    .setState(WaitForSelectorState.VISIBLE)
-		///	    .setTimeout(15000)
+		//	    .setTimeout(15000)
 		//	);
 		
 		OrganicDonatePage MD = new OrganicDonatePage(donatePage);

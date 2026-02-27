@@ -1,6 +1,7 @@
 package org.ishafoundation.pages.common.Payment;
 
 import com.microsoft.playwright.Frame;
+import com.microsoft.playwright.FrameLocator;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.PlaywrightException;
@@ -68,19 +69,26 @@ public class UatPaymentPage implements PaymentPage{
 
 		    confirmBtn.click(new Locator.ClickOptions().setTimeout(10000));
 	}
+	
 	public void cancleplaywright() {
-		    //  page.locator("#paymentFrame").contentFrame().getByRole(AriaRole.LINK, new FrameLocator.GetByRoleOptions().setName("Cancel")).click();
-		  // page.locator("#paymentFrame").contentFrame().getByRole(AriaRole.LINK, new FrameLocator.GetByRoleOptions().setName("Cancel Transaction")).click();
-		   Frame frame = page.frame("paymentFrame");
-		   frame.locator("a.secondary-link.cancel").click();
-		   frame.locator("//a[contains(normalize-space(), 'Cancel Transaction')]").click();
-		  /* page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel')]")
-		        .first()
-		        .click();   
-		   page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel Transaction')]")
-	        .first()
-	        .click();
-	        */
+		page.waitForLoadState(LoadState.NETWORKIDLE);
+
+		System.out.println("Total Frames: " + page.frames().size());
+
+		for (Frame f : page.frames()) {
+		    System.out.println("Frame name: " + f.name());
+		    System.out.println("Frame URL: " + f.url());
+		    System.out.println("----------------------");
+		}
+		page.waitForLoadState(LoadState.NETWORKIDLE);
+		page.locator("div[configpath='Exit.SecondaryButton']")
+	    .click();
+		
+		Locator cancel = page.locator("//article[normalize-space()='Confirm']");
+		cancel.waitFor(new Locator.WaitForOptions()
+		        .setState(WaitForSelectorState.VISIBLE));
+		cancel.click();
+	        
 		    }
 	
 	public void ccavenue() {
