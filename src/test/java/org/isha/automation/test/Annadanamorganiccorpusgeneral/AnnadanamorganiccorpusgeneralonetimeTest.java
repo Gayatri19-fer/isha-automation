@@ -38,17 +38,18 @@ public class AnnadanamorganiccorpusgeneralonetimeTest extends BaseTest {
 		Corpusotppage go = new Corpusotppage(donatePage);
 		go.getotp();
 		Fetchotp lo = new Fetchotp(donatePage);
-		String email = "anuradha@yopmail.com";  // your Outlook email
+		String email = "kirti@yopmail.com";  // your Outlook email
 		String otp = lo.fetchAndEnterOtpFromYopmail(email);
 		go.enterotp(otp);
 		go.verify();
 		Corpuspaymentpage OPP = new Corpuspaymentpage(donatePage);
 	//	OPP.clickoncancel();		// for cancel click and failed
 	//	OPP.Cancletansaction2();		// for cancel click and failed
-		OPP.paymentselect();			// for select payment option and cancel payment 
+	//	OPP.paymentselect();			// for select payment option and cancel payment 
+		OPP.FailInd();
 		OrganiccancelPage OC = new OrganiccancelPage(donatePage);
-		Assert.assertTrue(OC.iscanclePageOpen()); // for select payment option and verify cancel page
-		//Assert.assertTrue(OC.isfailedPageOpen()); // for cancel click and failed
+	//	Assert.assertTrue(OC.iscanclePageOpen()); // for select payment option and verify cancel page
+		Assert.assertTrue(OC.isfailedPageOpen()); // for cancel click and failed
 		OC.canclemsg();
 		OC.getPageUrl();
 		

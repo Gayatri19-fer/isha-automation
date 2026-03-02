@@ -38,7 +38,7 @@ public class Corpuspersonalpage {
 	    	page.fill(Lastname, "Bodake");
 	    }
 	    public void EnterEmail() {
-	    	page.fill(Email, "anuradha@yopmail.com");
+	    	page.fill(Email, "kirti@yopmail.com");
 	    }
 	    public void EnterPhonenumber() {
 	    	page.fill(Phonenumber, "8796821978");

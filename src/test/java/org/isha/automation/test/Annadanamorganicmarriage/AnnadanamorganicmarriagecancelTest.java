@@ -57,10 +57,11 @@ public class AnnadanamorganicmarriagecancelTest extends BaseTest{
 		MO.verify();
 		OrganicpaymentPage MP = new OrganicpaymentPage(donatePage);
 	//	MP.Cancleclick();		// for cancel click and failed
-		MP.paymentselect();		// for select payment option and cancel payment 
+	//	MP.paymentselect();		// for select payment option and cancel payment 
+		MP.FailInd();
 		OrganiccancelPage MC = new OrganiccancelPage(donatePage);
-		Assert.assertTrue(MC.iscanclePageOpen());  // for select payment option and verify cancel page
-		// Assert.assertTrue(IVC.isfailedPageOpen()); // for cancel click and failed
+	//	Assert.assertTrue(MC.iscanclePageOpen());  // for select payment option and verify cancel page
+		 Assert.assertTrue(MC.isfailedPageOpen()); // for cancel click and failed
 		//Assert.assertTrue("Cancel page did not load. Current URL: " + page.url(), IVC.isPageOpen());
 		MC.canclemsg();
 		MC.getPageUrl();

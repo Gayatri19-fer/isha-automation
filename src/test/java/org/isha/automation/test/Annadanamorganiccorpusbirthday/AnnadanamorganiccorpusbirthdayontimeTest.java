@@ -47,16 +47,17 @@ public class AnnadanamorganiccorpusbirthdayontimeTest extends BaseTest{
 		Corpusotppage BOT = new Corpusotppage(donatepage);
 		BOT.getotp();
 		Fetchotp lo = new Fetchotp(donatepage);
-		String email = "anuradha@yopmail.com";  // your Outlook email
+		String email = "kirti@yopmail.com";  // your Outlook email
 
 		String otp = lo.fetchAndEnterOtpFromYopmail(email);
 		BOT.enterotp(otp);
 		BOT.verify();
 		Corpuspaymentpage BP = new Corpuspaymentpage(donatepage);
-		BP.paymentselect();
+	//	BP.paymentselect();
+		BP.FailInd();
 		CorpusCancelpgae BC = new CorpusCancelpgae(donatepage);
-		Assert.assertTrue(BC.iscanclePageOpen()); // for select payment option and verify cancel page
-		//Assert.assertTrue(OC.isfailedPageOpen()); // for cancel click and failed
+	//	Assert.assertTrue(BC.iscanclePageOpen()); // for select payment option and verify cancel page
+		Assert.assertTrue(BC.isfailedPageOpen()); // for cancel click and failed
 		BC.canclemsg();
 		BC.getPageUrl();
 		

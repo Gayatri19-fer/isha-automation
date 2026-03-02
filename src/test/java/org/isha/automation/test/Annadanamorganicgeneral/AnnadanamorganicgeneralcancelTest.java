@@ -47,10 +47,11 @@ public class AnnadanamorganicgeneralcancelTest extends BaseTest {
 		OrganicpaymentPage OPM = new OrganicpaymentPage(donatePage);
 	//	OPP.clickoncancel();		// for cancel click and failed
 	//	OPP.Cancletansaction2();		// for cancel click and failed
-		OPM.paymentselect();			// for select payment option and cancel payment 
+	//	OPM.paymentselect();			// for select payment option and cancel payment 
+		OPM.FailInd();
 		OrganiccancelPage OC = new OrganiccancelPage(donatePage);
-		Assert.assertTrue(OC.iscanclePageOpen()); // for select payment option and verify cancel page
-		//Assert.assertTrue(OC.isfailedPageOpen()); // for cancel click and failed
+	//	Assert.assertTrue(OC.iscanclePageOpen()); // for select payment option and verify cancel page
+		Assert.assertTrue(OC.isfailedPageOpen()); // for cancel click and failed
 		OC.canclemsg();
 		OC.getPageUrl();
 		

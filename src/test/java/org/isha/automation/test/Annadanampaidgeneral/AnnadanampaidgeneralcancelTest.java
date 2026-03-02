@@ -27,10 +27,11 @@ public class AnnadanampaidgeneralcancelTest extends BaseTest {
 		LO.fetchAndEnterOtpFromYopmail(email);
 		generalpaymentPage GPM = new generalpaymentPage(page);
 	//	GPM.Cancletansaction();    // for cancel click and failed
-		GPM.paymentselect();		// for select payment option and cancel payment 
+	//	GPM.paymentselect();		// for select payment option and cancel payment 
+		GPM.FailInd();
 		generalcancelPage GC = new generalcancelPage(page);
-	//	Assert.assertTrue(GC.isfailedPageOpen()); 	// for cancel click and failed
-		Assert.assertTrue(GC.iscanclePageOpen());	// for select payment option and verify cancel page
+		Assert.assertTrue(GC.isfailedPageOpen()); 	// for cancel click and failed
+	//	Assert.assertTrue(GC.iscanclePageOpen());	// for select payment option and verify cancel page
 		GC.canclemsg();
 		System.out.println(GC.getPageUrl());
 	}

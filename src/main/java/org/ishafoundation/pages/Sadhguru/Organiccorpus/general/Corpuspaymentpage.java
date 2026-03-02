@@ -104,5 +104,24 @@ public class Corpuspaymentpage {
        .first()
        .click();
 	   }
+		public void FailInd() {
+			System.out.println("URL: " + page.url());
+
+			System.out.println("Count: " +
+			    page.locator("div[configpath='Exit.SecondaryButton']").count());
+
+			System.out.println("Visible: " +
+			    page.locator("div[configpath='Exit.SecondaryButton']").isVisible());
+			 Locator cancelBtn = page.locator("div[configpath='Exit.SecondaryButton']");
+			 cancelBtn.waitFor(new Locator.WaitForOptions()
+				        .setState(WaitForSelectorState.VISIBLE));
+			    cancelBtn.click(new Locator.ClickOptions().setTimeout(10000));
+
+			    Locator confirmBtn = page.locator("//div[@role='button'][normalize-space()='Confirm']");
+			    confirmBtn.waitFor(new Locator.WaitForOptions()
+			            .setState(WaitForSelectorState.ATTACHED));
+
+			    confirmBtn.click(new Locator.ClickOptions().setTimeout(10000));
+		}
 
 }

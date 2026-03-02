@@ -25,10 +25,11 @@ public class IVOnetimecancleTest extends BaseTest{
 		IVOnetimePaymentPage IVP = new IVOnetimePaymentPage(page);
 	 // IVP.Cancleclick();				// for cancel click and failed
      //	IVP.Cancletansaction2();		// for cancel click and failed
-     	IVP.paymentselect();			// for select payment option and cancel payment 
+     //	IVP.paymentselect();			// for select payment option and cancel payment 
+     	IVP.FailInd();
 		IVCanclePage IVC =  new IVCanclePage(page);
-		Assert.assertTrue(IVC.iscanclePageOpen());  // for select payment option and verify cancel page
-		// Assert.assertTrue(IVC.isfailedPageOpen()); // for cancel click and failed
+	//	Assert.assertTrue(IVC.iscanclePageOpen());  // for select payment option and verify cancel page
+		 Assert.assertTrue(IVC.isfailedPageOpen()); // for cancel click and failed
 		//Assert.assertTrue("Cancel page did not load. Current URL: " + page.url(), IVC.isPageOpen());
 			IVC.canclemsg();
 		IVC.getPageUrl();
