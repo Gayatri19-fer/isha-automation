@@ -54,7 +54,8 @@ public class AnnadanamorganiccorpusbirthdayontimeTest extends BaseTest{
 		BOT.verify();
 		Corpuspaymentpage BP = new Corpuspaymentpage(donatepage);
 	//	BP.paymentselect();
-		BP.FailInd();
+	//	BP.FailInd();
+		BP.payucancle(); // subgatway payu
 		CorpusCancelpgae BC = new CorpusCancelpgae(donatepage);
 	//	Assert.assertTrue(BC.iscanclePageOpen()); // for select payment option and verify cancel page
 		Assert.assertTrue(BC.isfailedPageOpen()); // for cancel click and failed
