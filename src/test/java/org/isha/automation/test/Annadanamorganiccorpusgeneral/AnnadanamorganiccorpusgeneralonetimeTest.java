@@ -22,7 +22,7 @@ public class AnnadanamorganiccorpusgeneralonetimeTest extends BaseTest {
 	public void organiccorpusgeneralflow() {
 		page.navigate(ConfigReader.get("sadhguru.url")+ "/en/contribute/annadanam");
 		LandingPage LP = new LandingPage(page);
-		Page donatePage = page.context().waitForPage(
+		Page donatePage = page.waitForPopup(
 		()->
 		{
 			LP.generalflow();
@@ -37,7 +37,7 @@ public class AnnadanamorganiccorpusgeneralonetimeTest extends BaseTest {
 		Otppage go = new Otppage(donatePage);
 		go.getotp();
 		Fetchotp lo = new Fetchotp(donatePage);
-		String email = "anuradha@yopmail.com";  // your Outlook email
+		String email = "kirti@yopmail.com";  // your Outlook email
 		String otp = lo.fetchAndEnterOtpFromYopmail(email);
 		go.enterotp(otp);
 		go.verify();
@@ -46,7 +46,9 @@ public class AnnadanamorganiccorpusgeneralonetimeTest extends BaseTest {
 	//	OPP.Cancletansaction2();		// for cancel click and failed
 	//	OPP.paymentselect();			// for select payment option and cancel payment 
 		PaymentPage payment = PaymentPageFactory.get(donatePage, false);
-		payment.FailInd();
+	//	payment.FailInd();  //for prod
+		payment.payucancle();
+	//	payment.cancleplaywright(); // for uat
 		Cancelpage OC = new Cancelpage(donatePage);
 		String expected = ConfigReader.get("payment.expected");
 

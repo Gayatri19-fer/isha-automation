@@ -15,7 +15,7 @@ import Resources.ExtentReportManager;
 
 public class Listener extends BaseTest implements ITestListener{
 	ExtentTest test;
-	ExtentReports Extends = ExtentReportManager.getExtentReports();
+	ExtentReports Extends = ExtentReportManager.getExtentReports();   // declairing the  ExtentReports variable at global level so it can be accessible by all the methods in the class 
 	ThreadLocal<ExtentTest> testblock = new ThreadLocal<>();
 	EmailUtils eu = new EmailUtils();
 	 @Override

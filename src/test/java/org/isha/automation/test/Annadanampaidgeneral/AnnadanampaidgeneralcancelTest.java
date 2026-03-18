@@ -33,7 +33,8 @@ public class AnnadanampaidgeneralcancelTest extends BaseTest {
 	//	GPM.Cancletansaction();    // for cancel click and failed
 	//	GPM.paymentselect();		// for select payment option and cancel payment
 		PaymentPage payment = PaymentPageFactory.get(page, false);
-		payment.FailInd();
+		//payment.FailInd();  //for prod
+		payment.cancleplaywright(); // for uat
 		Cancelpage GC = new Cancelpage(page);
 	/*	String expected = ConfigReader.get("payment.expected");
 

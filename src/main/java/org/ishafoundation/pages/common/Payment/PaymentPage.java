@@ -10,6 +10,8 @@ public interface PaymentPage {
 	
 	void CancelInd();
 	
+	void payucancle();
+	
 	void cancleplaywright();
 	
 

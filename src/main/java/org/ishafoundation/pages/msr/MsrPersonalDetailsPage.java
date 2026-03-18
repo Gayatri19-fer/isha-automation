@@ -65,7 +65,7 @@ public class MsrPersonalDetailsPage {
 
 		    boolean visible = page.locator("#address1_error_msg").isVisible();
 
-		    page.locator(Address).clear(); // important
+		    page.locator(Address).clear(); 
 
 		    return visible;
 		}

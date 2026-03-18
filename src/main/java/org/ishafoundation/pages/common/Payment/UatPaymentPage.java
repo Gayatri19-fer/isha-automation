@@ -142,4 +142,13 @@ public class UatPaymentPage implements PaymentPage{
                 .setTimeout(8000));
 	    
 	}
+	public void payucancle() {
+	//	Locator backbutton = page.locator("//i[@id='sidebar-backBtn']");
+		
+		Page popup = page.waitForPopup(()-> {page.click("//i[@id='sidebar-backBtn']");});
+		page.waitForLoadState();
+		popup.locator("//button[normalize-space()='YES, CANCEL']").click();
+		
+		
+	}
 }

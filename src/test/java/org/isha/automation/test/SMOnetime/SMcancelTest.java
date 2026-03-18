@@ -26,7 +26,8 @@ public class SMcancelTest extends BaseTest{
 		//SMPP.clickoncancel();		// for cancel click and failed
 	//	SMPP.paymentselect();		// for select payment option and cancel payment 
 		PaymentPage payment = PaymentPageFactory.get(page, false);
-		payment.FailInd();
+		payment.FailInd();  //for prod
+	//	payment.cancleplaywright(); // for uat
 		Cancelpage SMC = new Cancelpage(page);
 		//Assert.assertTrue(SMC.iscanclePageOpen()); // for select payment option and verify cancel page
 		Assert.assertTrue(SMC.isfailedPageOpen()); // for cancel click and failed

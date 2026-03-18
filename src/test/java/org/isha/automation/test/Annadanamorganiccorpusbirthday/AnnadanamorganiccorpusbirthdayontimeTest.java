@@ -50,7 +50,7 @@ public class AnnadanamorganiccorpusbirthdayontimeTest extends BaseTest{
 		Otppage BOT = new Otppage(donatepage);
 		BOT.getotp();
 		Fetchotp lo = new Fetchotp(donatepage);
-		String email = "anuradha@yopmail.com";  // your Outlook email
+		String email = "kirti@yopmail.com";  // your Outlook email
 
 		String otp = lo.fetchAndEnterOtpFromYopmail(email);
 		BOT.enterotp(otp);
@@ -58,7 +58,9 @@ public class AnnadanamorganiccorpusbirthdayontimeTest extends BaseTest{
 	//	Corpuspaymentpage BP = new Corpuspaymentpage(donatepage);
 	//	BP.paymentselect();
 		PaymentPage payment = PaymentPageFactory.get(donatepage, false);
-		payment.FailInd();
+	//	payment.FailInd();
+		payment.payucancle();
+	//	payment.cancleplaywright(); // for uat
 		Cancelpage OC = new Cancelpage(donatepage);
 		String expected = ConfigReader.get("payment.expected");
 

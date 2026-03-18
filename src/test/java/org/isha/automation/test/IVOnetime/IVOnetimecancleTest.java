@@ -27,7 +27,8 @@ public class IVOnetimecancleTest extends BaseTest{
 		IVDonationHelper IVD =new IVDonationHelper(page);
 		IVD.completedonationflow();
 		PaymentPage payment = PaymentPageFactory.get(page, false);
-		payment.FailInd();
+		payment.FailInd();  //for prod
+	//	payment.cancleplaywright(); // for uat
 	//	IVOnetimePaymentPage IVP = new IVOnetimePaymentPage(page);
 	 // IVP.Cancleclick();				// for cancel click and failed
      //	IVP.Cancletansaction2();		// for cancel click and failed
