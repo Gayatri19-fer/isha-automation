@@ -83,5 +83,20 @@ public class birthdaypaymentPage {
 
 			    confirmBtn.click(new Locator.ClickOptions().setTimeout(10000));
 		}
+		public void payucancle() {
+
+			
+			page.click("//i[@id='sidebar-backBtn']");
+
+			Locator button = page.locator("//button[normalize-space()='YES, CANCEL']");
+			button.waitFor();
+			button.click();
+			Locator selectradio = page.locator("(//label[contains(@class,'cstm-radio')])[1]");
+			selectradio.waitFor();
+			selectradio.click();
+			Locator submit = page.locator("//button[normalize-space()='Submit']");
+			submit.click();
+			
+		}
 
 }
