@@ -28,7 +28,8 @@ public class AnnadanampaidgeneralcancelTest extends BaseTest {
 		generalpaymentPage GPM = new generalpaymentPage(page);
 	//	GPM.Cancletansaction();    // for cancel click and failed
 	//	GPM.paymentselect();		// for select payment option and cancel payment 
-		GPM.FailInd();
+	//	GPM.FailInd();
+		GPM.payucancle();
 		generalcancelPage GC = new generalcancelPage(page);
 		Assert.assertTrue(GC.isfailedPageOpen()); 	// for cancel click and failed
 	//	Assert.assertTrue(GC.iscanclePageOpen());	// for select payment option and verify cancel page
