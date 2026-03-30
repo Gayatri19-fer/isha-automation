@@ -51,7 +51,7 @@ public class AnnadanamorganicmarriagecancelTest extends BaseTest{
 		Organicotppage MO = new Organicotppage(donatePage);
 		MO.getotp();
 		FetchOtppage LO = new FetchOtppage(donatePage);
-		String email = "anuradha@yopmail.com";  // your Outlook email
+		String email = "kirti@yopmail.com";  // your Outlook email
 		String otp = LO.fetchAndEnterOtpFromYopmail(email);
 		MO.enterotp(otp);
 		MO.verify();

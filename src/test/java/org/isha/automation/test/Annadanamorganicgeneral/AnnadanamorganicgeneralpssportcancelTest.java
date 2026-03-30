@@ -52,7 +52,7 @@ public class AnnadanamorganicgeneralpssportcancelTest extends BaseTest {
 		Organicotppage go = new Organicotppage(donatePage);
 		go.getotp();
 		Fetchotp lo = new Fetchotp(page);
-		String email = "anuradha@yopmail.com";  // your Outlook email
+		String email = "kirti@yopmail.com";  // your Outlook email
 
 		String otp = lo.fetchAndEnterOtpFromYopmail(email);
 		go.enterotp(otp);
