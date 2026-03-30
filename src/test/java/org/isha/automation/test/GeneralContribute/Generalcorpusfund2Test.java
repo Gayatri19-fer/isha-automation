@@ -15,7 +15,7 @@ import junit.framework.Assert;
 public class Generalcorpusfund2Test extends BaseTest{
 	
 	@Test(groups= {"sanity"}, retryAnalyzer = Retry.class)
-	public void generalorpuseflow() {
+	public void generalcorpusfund2flow() {
 		page.navigate("https://isha.sadhguru.org/en/contribute/isha-foundation-general-corpus-fund-2/donate");
 		OrganicDonatePage OD = new OrganicDonatePage(page);
 		OD.Enteramount();
