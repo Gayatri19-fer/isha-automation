@@ -19,7 +19,8 @@
 			<class name="org.isha.automation.test.SMOnetime.SMpassportcancelTest"/>
 			<class name="org.isha.automation.test.Annadanamorganiccorpusgeneral.AnnadanamorganiccorpusgeneralonetimepassportTest"/>
             <class name="org.isha.automation.test.Annadanamorganiccorpusbirthday.AnnadanamorganiccorpusbirthdayontimepassportTest"/>
-       
+       		<class name="org.isha.automation.test.GeneralContribute.GeneralcorpusfundPassTest"/>
+			<class name="org.isha.automation.test.GeneralContribute.GeneralDonationPassTest"/>
         </classes>
     </test>
 
