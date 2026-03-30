@@ -24,6 +24,11 @@
 			<class name="org.isha.automation.test.msronetime.MsrpaidTest"/>
 			<class name="org.isha.automation.test.Dhyanlinga.DhyanlingaonetimeTest"/>
 			<class name="org.isha.automation.test.Dhyanlinga.DhyanlingaPassTest"/>
+			<class name="org.isha.automation.test.GeneralContribute.Generalcorpusfund"/>
+			<class name="org.isha.automation.test.GeneralContribute.Generalcorpusfund2Test"/>
+			<class name="org.isha.automation.test.GeneralContribute.GeneralcorpusfundPassTest"/>
+			<class name="org.isha.automation.test.GeneralContribute.GeneralDonationPassTest"/>
+			<class name="org.isha.automation.test.GeneralContribute.GeneralDonationTest"/>
         </classes>
     </test>
 
