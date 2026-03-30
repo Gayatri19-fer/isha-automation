@@ -60,8 +60,9 @@ public class AnnadanamorganicmarriagecancelTest extends BaseTest{
 	//	MP.Cancleclick();		// for cancel click and failed
 	//	MP.paymentselect();		// for select payment option and cancel payment 
 		PaymentPage payment = PaymentPageFactory.get(donatePage, false);
-	//	payment.FailInd();
-		payment.cancleplaywright();
+		//	payment.FailInd();
+		payment.payucancle();
+		//payment.cancleplaywright();// for uat
 		Cancelpage MC = new Cancelpage(donatePage);
 	//	Assert.assertTrue(MC.iscanclePageOpen());  // for select payment option and verify cancel page
 		 Assert.assertTrue(MC.isfailedPageOpen()); // for cancel click and failed

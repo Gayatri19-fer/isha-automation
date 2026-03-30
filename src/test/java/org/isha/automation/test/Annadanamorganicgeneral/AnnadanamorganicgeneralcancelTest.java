@@ -49,7 +49,8 @@ public class AnnadanamorganicgeneralcancelTest extends BaseTest {
 	//	OPP.Cancletansaction2();		// for cancel click and failed
 	//	OPM.paymentselect();			// for select payment option and cancel payment 
 		PaymentPage payment = PaymentPageFactory.get(donatePage, false);
-		payment.FailInd();
+		//	payment.FailInd();
+		payment.payucancle();
 		Cancelpage OC = new Cancelpage(donatePage);
 	
 	//	Assert.assertTrue(OC.iscanclePageOpen()); // for select payment option and verify cancel page

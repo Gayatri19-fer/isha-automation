@@ -53,6 +53,7 @@ public class AnnadanampaidbirthdaycancleTest extends BaseTest{
 		//BP.paymentselect();		// for select payment option and cancel payment 
 		PaymentPage payment = PaymentPageFactory.get(page, false);
 		//payment.FailInd();  //for prod
+		payment.payucancle();
 		payment.cancleplaywright(); // for uat
 		Cancelpage BC = new Cancelpage(page);
 		//Assert.assertTrue(BC.iscanclePageOpen());	// for select payment option and verify cancel page
