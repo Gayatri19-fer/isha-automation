@@ -23,6 +23,7 @@
             <class name="org.isha.automation.test.Annadanamorganiccorpusbirthday.AnnadanamorganiccorpusbirthdayontimeTest"/>
 			<class name="org.isha.automation.test.msronetime.MsrpaidTest"/>
 			<class name="org.isha.automation.test.Dhyanlinga.DhyanlingaonetimeTest"/>
+			<class name="org.isha.automation.test.Dhyanlinga.DhyanlingaPassTest"/>
         </classes>
     </test>
 
