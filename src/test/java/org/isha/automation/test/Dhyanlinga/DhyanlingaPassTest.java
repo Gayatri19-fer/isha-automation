@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import com.microsoft.playwright.Page;
 
-public class DhyanlingaonetimeTest extends BaseTest {
+public class DhyanlingaPassTest extends BaseTest{
 	
 	@Test(groups= {"sanity"},retryAnalyzer = Retry.class)
 	public void dhyanlingaOntimeflow() throws InterruptedException {
@@ -27,18 +27,18 @@ public class DhyanlingaonetimeTest extends BaseTest {
 		DP.EnterPhonenumber();
 		DP.Selectcitizenship();
 		DP.Select80GTax();
-		DP.Selectcountry();
-		DP.Selectstate();
+		DP.Selectothercountry();
 		DP.Entertcity();
 		DP.EnterAddress();
 		DP.EnterPincode();
 		DP.EnterPan();
 		DP.Submit();
 		DhyanlingapaymentPage DPP = new DhyanlingapaymentPage(page);
-		DPP.payucancle();
+		DPP.cancleplaywright();
 		DhyanlingaCanclePage DC = new DhyanlingaCanclePage(page);
-		Assert.assertTrue(DC.isfailedPageOpen());	//  to validate fail page open or not
+		Assert.assertTrue(DC.iscanclePageOpen());	//  to validate fail page open or not
 		DC.canclemsg();
 		DC.getPageUrl();
 	}
+
 }
