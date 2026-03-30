@@ -25,5 +25,17 @@ public class DhyanlingapaymentPage {
 		submit.click();
 		
 	}
+	
+	   public void cancleplaywright() {
+		    //  page.locator("#paymentFrame").contentFrame().getByRole(AriaRole.LINK, new FrameLocator.GetByRoleOptions().setName("Cancel")).click();
+		  // page.locator("#paymentFrame").contentFrame().getByRole(AriaRole.LINK, new FrameLocator.GetByRoleOptions().setName("Cancel Transaction")).click();
+		//   Frame frame = page.frame("paymentFrame");
+		   page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel')]")
+		        .first()
+		        .click();   
+		   page.frameLocator("#paymentFrame").locator("//a[contains(normalize-space(), 'Cancel Transaction')]")
+	        .first()
+	        .click();
+		    }
 
 }
