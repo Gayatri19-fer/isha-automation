@@ -6,6 +6,7 @@ import org.ishafoundation.pages.Sadhguru.Organic.general.OrganicDonatePage;
 import org.ishafoundation.pages.Sadhguru.Organic.general.OrganiccancelPage;
 import org.ishafoundation.pages.Sadhguru.Organic.general.Organicotppage;
 import org.ishafoundation.pages.Sadhguru.Organic.general.OrganicpaymentPage;
+import org.ishafoundation.pages.Sadhguru.Organic.general.OrganicpersonaldetailsPage;
 import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Corpuspersonalpage;
 import org.ishafoundation.pages.Sadhguru.Organiccorpus.general.Fetchotp;
 import org.testng.annotations.Test;
@@ -18,9 +19,9 @@ public class GeneralcorpusfundPassTest extends BaseTest{
 	public void generalcorpusfundpassflow() {
 		page.navigate("https://isha.sadhguru.org/en/contribute/isha-foundation-general-corpus-fund/donate");
 		OrganicDonatePage OD = new OrganicDonatePage(page);
-		OD.Enteramount();
+		OD.Enteramount2();
 		OD.Continue();
-		Corpuspersonalpage og = new Corpuspersonalpage(page);
+		OrganicpersonaldetailsPage og = new OrganicpersonaldetailsPage(page);
 		og.EnterFirstname();
 		og.EnterLasttname();
 		og.EnterEmail();
