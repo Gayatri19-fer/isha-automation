@@ -57,7 +57,7 @@ public class AnnadanamorganicmarriagepassportcancelTest extends BaseTest{
 		Otppage MO = new Otppage(donatePage);
 		MO.getotp();
 		Fetchotp LO = new Fetchotp(donatePage);
-		String email = "anuradha@yopmail.com";  // your Outlook email
+		String email = "kirti@yopmail.com";  // your Outlook email
 		String otp = LO.fetchAndEnterOtpFromYopmail(email);
 		MO.enterotp(otp);
 		MO.verify();

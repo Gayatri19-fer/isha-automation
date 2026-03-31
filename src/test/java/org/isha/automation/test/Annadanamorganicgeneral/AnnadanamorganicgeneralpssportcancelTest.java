@@ -51,7 +51,7 @@ public class AnnadanamorganicgeneralpssportcancelTest extends BaseTest {
 		Otppage go = new Otppage(donatePage);
 		go.getotp();
 		Fetchotp lo = new Fetchotp(donatePage);
-		String email = "anuradha@yopmail.com";  // your Outlook email
+		String email = "kirti@yopmail.com";  // your Outlook email
 
 		String otp = lo.fetchAndEnterOtpFromYopmail(email);
 		go.enterotp(otp);

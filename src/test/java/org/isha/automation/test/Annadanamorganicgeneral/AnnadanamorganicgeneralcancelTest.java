@@ -40,7 +40,7 @@ public class AnnadanamorganicgeneralcancelTest extends BaseTest {
 		Otppage OTP = new Otppage(donatePage);
 		OTP.getotp();
 		Fetchotp lo = new Fetchotp(donatePage);
-		String email = "anuradha@yopmail.com";  // your Outlook email
+		String email = "kirti@yopmail.com";  // your Outlook email
 		String otp = lo.fetchAndEnterOtpFromYopmail(email);
 		OTP.enterotp(otp);
 		OTP.verify();

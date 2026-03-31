@@ -30,7 +30,14 @@ public class OrganicDonatePage {
 	   public void Continue() {
 		   
 			    page.locator("#continue").click();  // this triggers the new tab
-		 
-				   
+		   
+	   }
+	   public void Enteramount2() {
+		   page.locator("#amt-block").click();
+		  // page.fill(Amountext, "5250");
+		   page.locator("//label[@id='amt-block']//div[@class='radio radio-amt']").click();
+		   page.locator("input[placeholder='Type your own amount']").fill("450");
+		   page.evaluate("document.getElementById('hidden_donation_amount').value = '1200'");
+		//   page.keyboard().press("Tab");  // makes framework fire validation
 	   }
 }

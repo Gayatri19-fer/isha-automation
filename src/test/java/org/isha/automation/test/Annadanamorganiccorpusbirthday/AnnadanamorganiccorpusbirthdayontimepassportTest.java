@@ -50,7 +50,7 @@ public class AnnadanamorganiccorpusbirthdayontimepassportTest extends BaseTest{
 		Otppage BOT = new Otppage(donatepage);
 		BOT.getotp();
 		Fetchotp lo = new Fetchotp(donatepage);
-		String email = "kirti@yopmail.com";  // your Outlook email
+		String email = "ridhi@yopmail.com";  // your Outlook email
 		String otp =lo.fetchAndEnterOtpFromYopmail(email);
 		BOT.enterotp(otp);
 		BOT.verify();
