@@ -37,7 +37,7 @@ public class Generalcorpusfund2Test extends BaseTest{
 		Organicotppage OTP = new Organicotppage(page);
 		OTP.getotp();
 		Fetchotp lo = new Fetchotp(page);
-		String email = "kirti@yopmail.com";  // your Outlook email
+		String email = "ridhi@yopmail.com";  // your Outlook email
 		String otp = lo.fetchAndEnterOtpFromYopmail(email);
 		OTP.enterotp(otp);
 		OTP.verify();
