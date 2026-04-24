@@ -14,7 +14,7 @@ import com.microsoft.playwright.Page;
 public class DhyanlingaPassTest extends BaseTest{
 	
 	@Test(groups= {"sanity"},retryAnalyzer = Retry.class)
-	public void dhyanlingaOntimeflow() throws InterruptedException {
+	public void dhyanlingaOntimepassflow() throws InterruptedException {
 		Page page = getPage(); // always get page from BaseTest
 		page.navigate("https://isha.sadhguru.org/en/contribute/dhyanalinga/donate");
 		DhyanlingaDonateapage DD = new DhyanlingaDonateapage(page);
