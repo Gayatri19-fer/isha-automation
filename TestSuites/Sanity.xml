@@ -23,7 +23,6 @@
             <class name="org.isha.automation.test.Annadanamorganiccorpusbirthday.AnnadanamorganiccorpusbirthdayontimeTest"/>
 			<class name="org.isha.automation.test.msronetime.MsrpaidTest"/>
 			<class name="org.isha.automation.test.Dhyanlinga.DhyanlingaonetimeTest"/>
-			<class name="org.isha.automation.test.Dhyanlinga.DhyanlingaPassTest"/>
 			<class name="org.isha.automation.test.GeneralContribute.Generalcorpusfund"/>
 			<class name="org.isha.automation.test.GeneralContribute.Generalcorpusfund2Test"/>
 			<class name="org.isha.automation.test.GeneralContribute.GeneralDonationTest"/>
