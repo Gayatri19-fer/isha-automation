@@ -37,15 +37,27 @@ public class ShivangapaymentPage {
  	         .setState(WaitForSelectorState.VISIBLE)
  	         .setTimeout(15000));
  		    // Click and wait for navigation
- 		    cancelTran2.first().click(new Locator.ClickOptions().setTimeout(15000));
+ 		//    cancelTran2.first().click(new Locator.ClickOptions().setTimeout(15000));
  		    
 
- 		 // cancelTran2.first().click();
+ 		   for (int i = 0; i < 3; i++) {
+		        try {
+		            cancelTran2.click(new Locator.ClickOptions()
+		                    .setTimeout(5000)
+		                    .setNoWaitAfter(true));
+		           // Wait short time to see if redirect happens
+		            page.waitForTimeout(2000);
 
- 			/*Locator cancelButton = page.frameLocator("#paymentFrame")
- 	 		.locator("a[title='Cancel Transaction']");
- 	 		cancelButton.click();
- 			 */
+		            if (page.url().contains("cancel")) {
+		                System.out.println("Cancel redirect success");
+		                break;
+		            }
+		        } catch (Exception e) {
+		            System.out.println("Retry click attempt: " + (i + 1));
+		            page.waitForTimeout(1000); // small wait before retry
+		        }
+		    }
+
  			}
  	
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="SanitySuite" parallel="false">
+    <groups>
+        <run>
+            <include name="sanity"/>
+        </run>
+    </groups>
+
+    <test thread-count="5" name="Sanity flow Tests">
+        <classes>
+            <class name="org.isha.automation.test.shivangaonetime.ShivangacancleTest"/>
+            <class name="msronetime.MahashivaratricancleTest"/>
+            
+        </classes>
+    </test>
+</suite>

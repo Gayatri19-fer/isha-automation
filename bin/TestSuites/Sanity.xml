@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="SanitySuite" parallel="false">
+<listeners>
+    <listener class-name="org.isha.automation.basetest.Listener"/>
+</listeners>
+
+
+    <test thread-count="5" name="Sanity flow Tests">
+
+        <classes>
+            <class name="org.isha.automation.test.shivangaonetime.ShivangacancleTest"/>
+            <class name="org.isha.automation.test.msronetime.MahashivaratricancleTest"/>
+            <class name="org.isha.automation.test.CACAOnetime.CACAOnetimecancleTest"/>
+            <class name="org.isha.automation.test.IVOnetime.IVOnetimecancleTest"/>
+            <class name="org.isha.automation.test.LB.LingabhairavicancelTest"/>
+            <class name="org.isha.automation.test.Annadanampaidgeneral.AnnadanampaidgeneralcancelTest"/>
+            <class name="org.isha.automation.test.Annadanampaidbirthday.AnnadanampaidbirthdaycancleTest"/>
+			<class name="org.isha.automation.test.Annadanamorganicgeneral.AnnadanamorganicgeneralcancelTest"/>
+			<class name="org.isha.automation.test.Annadanamorganicmarriage.AnnadanamorganicmarriagecancelTest"/>
+			<class name="org.isha.automation.test.SMOnetime.SMcancelTest"/>
+			<class name="org.isha.automation.test.Annadanamorganiccorpusgeneral.AnnadanamorganiccorpusgeneralonetimeTest"/>
+            <class name="org.isha.automation.test.Annadanamorganiccorpusbirthday.AnnadanamorganiccorpusbirthdayontimeTest"/>
+			<class name="org.isha.automation.test.msronetime.MsrpaidTest"/>
+			<class name="org.isha.automation.test.Dhyanlinga.DhyanlingaonetimeTest"/>
+			<class name="org.isha.automation.test.GeneralContribute.Generalcorpusfund"/>
+			<class name="org.isha.automation.test.GeneralContribute.GeneralcorpusfundPassTest"/>
+			<class name="org.isha.automation.test.GeneralContribute.Generalcorpusfund2Test"/>
+			<class name="org.isha.automation.test.GeneralContribute.GeneralDonationTest"/>
+			<class name="org.isha.automation.test.GeneralContribute.GeneralDonationPassTest"/>
+        </classes>
+    </test>
+
+</suite>

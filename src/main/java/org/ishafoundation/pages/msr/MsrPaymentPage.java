@@ -43,15 +43,27 @@ public class MsrPaymentPage {
 	 	         .setState(WaitForSelectorState.VISIBLE)
 	 	         .setTimeout(15000));
 	 		    // Click and wait for navigation
-	 		    cancelTran2.first().click(new Locator.ClickOptions().setTimeout(15000));
+	 		 //   cancelTran2.first().click(new Locator.ClickOptions().setTimeout(15000));
 	 		    
+	 		    // new change added 5/5/26 Retry click if needed
+	 		    for (int i = 0; i < 3; i++) {
+	 		        try {
+	 		            cancelTran2.click(new Locator.ClickOptions()
+	 		                    .setTimeout(5000)
+	 		                    .setNoWaitAfter(true));
+	 		           // Wait short time to see if redirect happens
+	 		            page.waitForTimeout(2000);
 
-	 		 // cancelTran2.first().click();
+	 		            if (page.url().contains("cancel")) {
+	 		                System.out.println("Cancel redirect success");
+	 		                break;
+	 		            }
+	 		        } catch (Exception e) {
+	 		            System.out.println("Retry click attempt: " + (i + 1));
+	 		            page.waitForTimeout(1000); // small wait before retry
+	 		        }
+	 		    }
 
-	 			/*Locator cancelButton = page.frameLocator("#paymentFrame")
-	 	 		.locator("a[title='Cancel Transaction']");
-	 	 		cancelButton.click();
-	 			 */
 	 			}
 	 	
 	 	public void paymentselect() { // for select payment option and cancel payment

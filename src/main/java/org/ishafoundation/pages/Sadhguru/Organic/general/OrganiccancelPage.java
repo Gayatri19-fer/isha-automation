@@ -18,12 +18,17 @@ public class OrganiccancelPage {
 		//  return output;
 		try {
 		    // Wait until redirect to failed
-		    page.waitForURL("**/failed*", new Page.WaitForURLOptions().setTimeout(30000));
+		 //   page.waitForURL("**/failed*", new Page.WaitForURLOptions().setTimeout(30000));
 
 		    // Defensive wait for DOM
-		    page.waitForLoadState(LoadState.DOMCONTENTLOADED, new Page.WaitForLoadStateOptions().setTimeout(15000));
-		    page.waitForLoadState(LoadState.NETWORKIDLE, new Page.WaitForLoadStateOptions().setTimeout(15000));
-
+		//    page.waitForLoadState(LoadState.DOMCONTENTLOADED, new Page.WaitForLoadStateOptions().setTimeout(15000));
+		//    page.waitForLoadState(LoadState.NETWORKIDLE, new Page.WaitForLoadStateOptions().setTimeout(15000));
+		          // Wait until either URL changes OR failed message appears
+        page.waitForCondition(() -> 
+            page.url().contains("failed") || 
+            page.locator(cancletitle).isVisible(),
+            new Page.WaitForConditionOptions().setTimeout(30000)
+        );
 		    // Check URL + failed page element
 		    if (page.url().contains("failed")) {
 		        page.waitForSelector(cancletitle, new Page.WaitForSelectorOptions().setTimeout(10000));
