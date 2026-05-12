@@ -21,8 +21,9 @@ public class CACAOnetimecancleTest extends BaseTest {
 		CACADoationHelper CAH = new CACADoationHelper(page);
 		CAH.completedonationflow();
 		CACAOnetimePaymentPage CAP = new CACAOnetimePaymentPage(page);
-		CAP.Canclepaymentclick();	//for cancel click and cancel
-		CAP.CancleTransaction();	//for cancel click and cancel
+	//	CAP.Canclepaymentclick();	//for cancel click and cancel
+	//	CAP.CancleTransaction();	//for cancel click and cancel
+		CAP.payucancle();
 		CACAOntimeCancle CAC = new CACAOntimeCancle(page);
 		Assert.assertTrue(CAC.iscanclePageOpen()); //for cancel click and cancel
 		CAC.canclemsg();
