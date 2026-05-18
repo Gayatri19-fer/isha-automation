@@ -14,5 +14,7 @@ public interface PaymentPage {
 	
 	void cancleplaywright();
 	
+	void MSRccavenue();
+	
 
 }

@@ -1,0 +1,14 @@
+[33m88e525f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32muat[m[33m)[m HEAD@{0}: reset: moving to HEAD~1
+[33mb2ddd36[m[33m ([m[1;31morigin/uat[m[33m, [m[1;32muat-local[m[33m)[m HEAD@{1}: checkout: moving from uat to uat
+[33mb2ddd36[m[33m ([m[1;31morigin/uat[m[33m, [m[1;32muat-local[m[33m)[m HEAD@{2}: checkout: moving from uat-local to uat
+[33mb2ddd36[m[33m ([m[1;31morigin/uat[m[33m, [m[1;32muat-local[m[33m)[m HEAD@{3}: commit: UAT payu cancel method changes for annadanamcorpuse indian flow
+[33m88e525f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32muat[m[33m)[m HEAD@{4}: pull origin uat: Fast-forward
+[33m903d54e[m[33m ([m[1;31morigin/uat-local[m[33m)[m HEAD@{5}: commit: one chnge
+[33m1118b99[m HEAD@{6}: commit: cancel changes
+[33me289c80[m HEAD@{7}: commit: uat changes
+[33m2943919[m HEAD@{8}: commit: UAT changes
+[33md06ca72[m HEAD@{9}: commit: paid and shivanga changes
+[33m075347b[m HEAD@{10}: commit: added new pages, utils, resources and updated donation page
+[33mcb46956[m HEAD@{11}: commit: added gitignore for build & reports
+[33m212751c[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{12}: checkout: moving from main to uat-local
+[33m212751c[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{13}: clone: from https://github.com/Gayatri19-fer/isha-automation.git

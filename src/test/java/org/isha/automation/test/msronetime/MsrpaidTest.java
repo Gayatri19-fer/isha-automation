@@ -2,6 +2,9 @@ package org.isha.automation.test.msronetime;
 
 import org.isha.automation.basetest.BaseTest;
 import org.isha.automation.basetest.Retry;
+import org.ishafoundation.pages.common.Cancelpage;
+import org.ishafoundation.pages.common.Payment.PaymentPage;
+import org.ishafoundation.pages.common.Payment.PaymentPageFactory;
 import org.ishafoundation.pages.msr.MsrCanclePage;
 import org.ishafoundation.pages.msr.MsrDonationPage;
 import org.ishafoundation.pages.msr.MsrPaymentPage;
@@ -11,7 +14,7 @@ import org.testng.annotations.Test;
 
 public class MsrpaidTest extends BaseTest{
 	  @Test(groups= {"sanity"},retryAnalyzer = Retry.class)
-	    public void MahashivratriOntimeflow() {
+	    public void MsrpaidTestflow() {
 	        page.navigate("https://mahashivarathri.org/en/mahashivratri-contribution/donate-pc");
 	        MsrDonationPage msrd = new MsrDonationPage(page);
 	        msrd.Entercustomeamount();
@@ -26,15 +29,12 @@ public class MsrpaidTest extends BaseTest{
 	        msrpersonal.enterpan();
 	        msrpersonal.Selectcheckbox();
 	        msrpersonal.paysecuarly();
-	        MsrPaymentPage msrpayment = new MsrPaymentPage(page);
-	      //  msrpayment.cancleplaywright();
-	        msrpayment.Canclepaymentclick();  // for cancel click and cancel
-	       msrpayment.CancleTransaction();  //for cancel click and cancel
-	        MsrCanclePage canclepage = new MsrCanclePage(page);
-	        Assert.assertTrue(canclepage.iscanclePageOpen());  // for cancel click and cancel
-	      //Assert.assertTrue(canclepage.isPageOpened());
-	      canclepage.canclemsg();
-	      canclepage.getPageUrl();
+	        PaymentPage payment = PaymentPageFactory.get(page, false);
+	        payment.MSRccavenue();
+	    	Cancelpage IVC =  new Cancelpage(page);
+	    	Assert.assertTrue(IVC.iscanclePageOpen());
+	    	IVC.canclemsg();
+	    	IVC.getPageUrl();
 	       
 	    }
 

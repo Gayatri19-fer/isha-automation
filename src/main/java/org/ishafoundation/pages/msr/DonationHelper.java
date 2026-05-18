@@ -10,8 +10,7 @@ public class DonationHelper {
 	        this.page = page;
 	    }
 	   public void completeDonationFlow() {
-	   MsrLandingPage msrl = new MsrLandingPage(page);
-       msrl.Donationbuttonclick();
+
        MsrDonationPage msrd = new MsrDonationPage(page);
        msrd.selectAmount();
        msrd.Donationbuttonclick2();

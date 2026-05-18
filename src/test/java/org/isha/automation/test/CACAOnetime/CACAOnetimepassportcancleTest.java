@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 
 public class CACAOnetimepassportcancleTest extends BaseTest {
-	@Test(groups= {"sanity"},retryAnalyzer = Retry.class)
+	@Test(groups= {"sanity", "auth"},retryAnalyzer = Retry.class)
 	public void CACAOnetimepassflow() {
 		page.navigate(ConfigReader.get("consciousplanet.url")+ "/en/cauvery-calling/plant-trees"); 
 		CACAOnetimeDonationPage COD = new CACAOnetimeDonationPage(page);

@@ -19,7 +19,7 @@ public class DonationHelpershivanga {
 		sp.EnterEmail();
 		sp.EnterPhonenumber();
 		sp.Selectstate();
-		sp.selectcity();
+		sp.Enetercity();
 		sp.EnterAddress();
 		sp.EnterPincode();
 	//	sp.EnterPan();

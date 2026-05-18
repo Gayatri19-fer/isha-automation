@@ -15,22 +15,20 @@ import org.testng.annotations.Test;
 
 
 public class CACAOnetimecancleTest extends BaseTest {
-	@Test(groups= {"sanity"}, retryAnalyzer = Retry.class)
+	@Test(groups= {"sanity", "auth"}, retryAnalyzer = Retry.class)
 	public void CACAOnetimeflow() {
 		page.navigate(ConfigReader.get("consciousplanet.url")+ "/en/cauvery-calling/plant-trees"); 
-		CACAOnetimeDonationPage COD = new CACAOnetimeDonationPage(page);
-		COD.DonatePage();
+		CACAOnetimeDonationPage dn = new CACAOnetimeDonationPage(page);
+		dn.DonatePage();
 		CACADoationHelper CAH = new CACADoationHelper(page);
 		CAH.completedonationflow();
-	//	CACAOnetimePaymentPage CAP = new CACAOnetimePaymentPage(page);
-	//	CAP.Canclepaymentclick();	//for cancel click and cancel
-	//	CAP.CancleTransaction();	//for cancel click and cancel
-		PaymentPage payment = PaymentPageFactory.get(page, false);
-		payment.ccavenue();
-		Cancelpage CAC = new Cancelpage(page);
-		Assert.assertTrue(CAC.iscanclePageOpen()); //for cancel click and cancel
-		CAC.canclemsg();
-		CAC.getPageUrl();
+	    PaymentPage payment = PaymentPageFactory.get(page, false);
+	    payment.payucancle();
+		Cancelpage IVC =  new Cancelpage(page);
+		Assert.assertTrue(IVC.isfailedPageOpen());
+		//Assert.assertTrue(canclepage.isPageOpened());
+		IVC.canclemsg();
+		IVC.getPageUrl();
 	}
 
-}
+} 

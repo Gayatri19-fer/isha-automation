@@ -38,7 +38,7 @@ public class ShivangaPersonalDetails {
 	   public void Selectstate() {
 		   page.locator(state).selectOption("Maharashtra");
 	   }
-	   public void selectcity() {
+	   public void Enetercity() {
 		   page.locator("#city").fill("Mumbai");
 	   }
 	    public void EnterAddress() {

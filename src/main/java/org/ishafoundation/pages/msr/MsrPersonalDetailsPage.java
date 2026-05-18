@@ -16,6 +16,7 @@ public class MsrPersonalDetailsPage {
 	private String Pancard = "#pancard";
 	private String Checkbox = "div[class='message-checkbox income-checkbox'] div[class='checkbox']";
 	private String paysecurly = "button[name='Submit']";
+	private String state = "#selected_state";
 	   public MsrPersonalDetailsPage(Page page) {
 	        this.page = page;
 	    }
@@ -47,6 +48,12 @@ public class MsrPersonalDetailsPage {
 	    public void enterpan() {
 	    	page.fill(Pancard, "GTYHT5645R");
 	    }
+		public void Selectstate() {
+		page.locator(state).selectOption("Maharashtra");
+		   }
+		public void Enetercity() {
+			page.locator("#city").fill("Mumbai");
+		  }
 		public boolean isPanoptiondispayed() {
 		    
 		    try {

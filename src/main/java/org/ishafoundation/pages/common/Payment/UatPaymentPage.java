@@ -143,12 +143,54 @@ public class UatPaymentPage implements PaymentPage{
 	    
 	}
 	public void payucancle() {
-	//	Locator backbutton = page.locator("//i[@id='sidebar-backBtn']");
+	
+		page.click("//i[@id='sidebar-backBtn']");
+
+		Locator button = page.locator("//button[normalize-space()='YES, CANCEL']");
+		button.waitFor();
+		button.click();
+		Locator selectradio = page.locator("(//label[contains(@class,'cstm-radio')])[1]");
+		selectradio.waitFor();
+		selectradio.click();
+		Locator submit = page.locator("//button[normalize-space()='Submit']");
+		submit.click();
 		
-		Page popup = page.waitForPopup(()-> {page.click("//i[@id='sidebar-backBtn']");});
-		page.waitForLoadState();
-		popup.locator("//button[normalize-space()='YES, CANCEL']").click();
+	}
+	
+	public void MSRccavenue() 
+	{
 		
-		
+	    	FrameLocator frame = page.frameLocator("#paymentFrame");
+	 		Locator cancelButton = frame.locator("div#buttons >> a.secondary-link.cancel");
+	 		cancelButton.nth(0).click();
+	
+	 		  Locator canceltran1 = frame.locator("div[style*='display: block'] div#buttons a.confirmCancel");
+	 		  Locator cancelTran2 = frame.locator("a.confirmCancel:has-text('Cancel Transaction')");
+
+	 		  cancelTran2.first().waitFor(new Locator.WaitForOptions()
+	 	         .setState(WaitForSelectorState.VISIBLE)
+	 	         .setTimeout(15000));
+	 		    // Click and wait for navigation
+	 		 //   cancelTran2.first().click(new Locator.ClickOptions().setTimeout(15000));
+	 		    
+	 		    // new change added 5/5/26 Retry click if needed
+	 		    for (int i = 0; i < 3; i++) {
+	 		        try {
+	 		            cancelTran2.click(new Locator.ClickOptions()
+	 		                    .setTimeout(5000)
+	 		                    .setNoWaitAfter(true));
+	 		           // Wait short time to see if redirect happens
+	 		            page.waitForTimeout(2000);
+
+	 		            if (page.url().contains("cancel")) {
+	 		                System.out.println("Cancel redirect success");
+	 		                break;
+	 		            }
+	 		        } catch (Exception e) {
+	 		            System.out.println("Retry click attempt: " + (i + 1));
+	 		            page.waitForTimeout(1000); // small wait before retry
+	 		        }
+	 		    
+	 		    }
 	}
 }
