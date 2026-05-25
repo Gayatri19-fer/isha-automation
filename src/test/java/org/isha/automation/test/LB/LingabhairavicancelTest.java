@@ -21,8 +21,9 @@ public class LingabhairavicancelTest extends BaseTest{
 		DonationHelper LBP = new DonationHelper(page);
 		LBP.completedonationflow();
 		LBPaymentPage LPP = new LBPaymentPage(page);
-		LPP.Canclepaymentclick();	//for cancel click and cancel
-		LPP.CancleTransaction();	//for cancel click and cancel
+	//	LPP.Canclepaymentclick();	//for cancel click and cancel
+	//	LPP.CancleTransaction();	//for cancel click and cancel
+		LPP.payucancle();
 		LBcancelPage LBC = new LBcancelPage(page);
 		Assert.assertTrue(LBC.iscanclePageOpen());	//for cancel click and cancel
 		LBC.canclemsg();
